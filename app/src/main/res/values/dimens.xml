@@ -3,10 +3,62 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!--Sizes-->
-    <dimen name="SizeSmall"> 24dp </dimen>
-    <dimen name="SizeMedium"> 56dp </dimen>
-    <dimen name="SizeLarge"> 72dp </dimen>
+    <dimen  name = "Baseline_grid_8" > 8dp </dimen>
+    <dimen  name = "Iconography_toolbars_align_4" > 4dp </dimen>
 
+    <dimen  name = "Avatar_40" > 40dp </dimen>
+    <dimen  name = "Icon_24" > 24dp </dimen>
+    <dimen  name = "Touch_Target_On_Both_48" > 48dp </dimen>
+    <dimen  name = "Touch_Target_Height_48" > 48dp </dimen>
+    <dimen  name = "Button_Height_36" > 36dp </dimen>
+
+    <!-- Mobile -->
+    <dimen  name = "Mob_Screen_Edge_Left_Right_Margin_16" > 16dp </dimen>
+    <dimen  name = "Mob_Content_Associated_Icon_Avatar_Left_Margins_72" > 72dp </dimen>
+    <dimen  name = "Mob_Horizontal_Margins_On_Mobile_16" > 16dp </dimen>
+    <dimen  name = "Mob_Status_Bar_24" > 24dp </dimen>
+    <dimen  name = "Mob_ToolBar_56" > 56dp </dimen>
+    <dimen  name = "Mob_Subtitle_48" > 48dp </dimen>
+    <dimen  name = "Mob_List_Item_72" > 72dp </dimen>
+    <dimen  name = "Mob_Content_Left_Margin_From_Screen_Edge_72" > 72dp </dimen>
+    <dimen  name = "Mob_Title_List_Items_72" > 72dp </dimen>
+    <dimen  name = "Mob_Space_Between_Content_Areas_8" > 8dp </dimen>
+    <dimen  name = "Mob_RightSide_Icons_Align_From_Right_Edge_32" >  32dp </dimen>
+    <dimen  name = "Mob_Account_Menu_List_Items_48" > 48dp </dimen>
+    <dimen  name = "Mob_Navigation_Right_Margin_56" > 56dp </dimen>
+    <dimen  name = "Mob_Side_Nav_Width_Screen_Width_Minus_Height_ActionBar_56" > 56dp </dimen>
+
+    <!-- Tablet -->
+    <dimen  name = "Tab_Screen_Edge_Left_Right_Margins_24" > 24dp </dimen>
+    <dimen  name = "Tab_Content_Left_Margin_From_Screen_Edge_80" > 80dp </dimen>
+    <dimen  name = "Tab_Card_Left_Right_Padding_24" > 24dp </dimen>
+    <dimen  name = "Tab_Card_Left_Right_Padding_32" > 32dp </dimen>
+    <dimen  name = "Tab_Card_Content_Left_Padding_104" > 104dp </dimen>
+    <dimen  name = "Tab_Status_Bar_And_Space_Above_List_24" > 24dp </dimen>
+    <dimen  name = "Tab_List_Item_64" > 64dp </dimen>
+    <dimen  name = "Tab_List_Item_72" > 72dp </dimen>
+    <dimen  name = "Tab_Space_Between_Content_Areas_8" > 8dp </dimen>
+    <dimen  name = "Tab_Icons_Vertical_Center_Distance_From_Screen_Edge_52" > 52dp </dimen>
+    <dimen  name = "Tab_Nav_Item_Left_Padding_From_Screen_Edge_104" > 104dp </dimen>
+    <dimen  name = "Tab_Card_Nav_Item_Left_Padding_96" > 96dp </dimen>
+    <dimen  name = "Tab_Status_Bar_24" > 24dp </dimen>
+    <dimen  name = "Tab_Toolbar_And_List_Item_64" > 64dp </dimen>
+    <dimen  name = "Tab_Subtitle_And_List_Item_And_Slider_48" > 48dp </dimen>
+    <dimen  name = "Tab_Title_80" > 80dp </dimen>
+
+    <!-- Text -->
+    <dimen  name = "Text_View_Width_150" > 150dp </dimen>
+    <dimen  name = "Ball_Radius_30" > 30dp </dimen>
+    <dimen  name = "Font_Size_16" > 16sp </dimen>
+    <dimen  name = "Font_Size_112" > 112sp </dimen>
+    <dimen  name = "Font_Size_56" > 56sp </dimen>
+    <dimen  name = "Font_Size_45" > 45sp </dimen>
+    <dimen  name = "Font_Size_34" > 34sp </dimen>
+    <dimen  name = "Font_Size_24" > 24sp </dimen>
+    <dimen  name = "Font_Size_20" > 20sp </dimen>
+    <dimen  name = "Font_Size_14" > 14sp </dimen>
+    <dimen  name = "Font_Size_13" > 13sp </dimen>
+    <dimen  name = "Font_Size_15" > 15sp </dimen>
+    <dimen  name = "Font_Size_12" > 12sp </dimen>
 
 </resources>
