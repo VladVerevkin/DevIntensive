@@ -113,4 +113,153 @@
         android:background="@color/grey_light"
         android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
 
+
+    <!--VK.COM-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Baseline_grid_8"
+        android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_email_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Layout_height_72"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/Layout_mar_left_32"
+            android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/vkcom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Профиль в VK"
+                    android:inputType="text"
+                    android:text="vk.com/Vlad_Verevkin"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_visibility_black_24dp"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Line_size_1"
+        android:background="@color/grey_light"
+        android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+
+    <!--GITHUB-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Baseline_grid_8"
+        android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_email_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Layout_height_72"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/Layout_mar_left_32"
+            android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/github_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Репозиторий"
+                    android:inputType="text"
+                    android:text="github.com/vlad/DevIntensive"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_visibility_black_24dp"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Line_size_1"
+        android:background="@color/grey_light"
+        android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+    <!--About-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Baseline_grid_8"
+        android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_email_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Layout_height_72"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/Layout_mar_left_32"
+            android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/about_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="О себе"
+                    android:inputType="text"
+                    android:text="много текта много текта много текта"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </LinearLayout>
