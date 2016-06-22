@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <style name="icon">
+        <item name="android:layout_height">@dimen/Icon_24</item>
+        <item name="android:layout_width">@dimen/Icon_24</item>
+    </style>
+
+    <style name="icon.left" parent="icon">
+        <item name="android:layout_gravity">top|left</item>
+        <item name="android:layout_marginTop">@dimen/Layout_mar_top_24</item>
+        <item name="android:layout_marginLeft">@dimen/Layout_mar_left_16</item>
+    </style>
+
+    <style name="icon.right" parent="icon">
+        <item name="android:layout_gravity">top|right</item>
+        <item name="android:layout_marginTop">@dimen/Layout_mar_top_24</item>
+        <item name="android:layout_marginRight">@dimen/Layout_mar_right_32</item>
+    </style>
 </resources>

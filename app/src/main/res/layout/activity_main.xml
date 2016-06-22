@@ -6,5 +6,111 @@
     tools:context=".ui.activities.MainActivity"
     android:orientation="vertical">
 
+    <!--Мобильный телефон-->
+ <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/Baseline_grid_8"
+    android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+    <ImageView
+        style="@style/icon.left"
+        android:src="@drawable/ic_call_black_24dp"/>
+
+     <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/Layout_height_72"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/Layout_mar_left_32"
+        android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+         <android.support.design.widget.TextInputLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             >
+
+
+             <EditText
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:hint="Мобильный телефон"
+                 android:inputType="phone"
+                 android:text="+79882480038"
+                 android:enabled="false"
+                 android:textColor="@color/black"
+                 android:textColorHint="@color/grey"
+                 android:focusable="false"
+                 />
+         </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+     <ImageView
+         style="@style/icon.right"
+         android:src="@drawable/ic_phone_in_talk_black_24dp"
+         />
+     
+ </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/Line_size_2"
+    android:background="@color/grey_light"
+    android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+<!--Email-->
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Baseline_grid_8"
+        android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+        <ImageView
+            style="@style/icon.left"
+            android:src="@drawable/ic_email_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Layout_height_72"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/Layout_mar_left_32"
+            android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:text="vlad.verevkin@gmail.com"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            style="@style/icon.right"
+            android:src="@drawable/ic_send_black_24dp"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Line_size_2"
+        android:background="@color/grey_light"
+        android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
 
 </LinearLayout>

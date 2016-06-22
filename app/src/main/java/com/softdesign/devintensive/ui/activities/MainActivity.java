@@ -8,8 +8,7 @@ import android.view.View;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.utils.ConstantManager;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = ConstantManager.TAG_Prefix+"Main Activity";
 
     @Override
