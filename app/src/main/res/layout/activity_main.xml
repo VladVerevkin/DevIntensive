@@ -367,9 +367,7 @@
                     android:focusable="false"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:fontFamily="sans-serif-condensed"
-
-                    />
+                    android:fontFamily="sans-serif-condensed"/>
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
