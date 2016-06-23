@@ -1,10 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+       >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/grey">
+
+<!--reit-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/reit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0 \n Рейтинг"
+                android:enabled="false"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:gravity="center"
+                android:focusable="false"
+                android:fontFamily="sans-serif-condensed"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="@dimen/Line_size_1"
+            android:layout_height="match_parent"
+            android:background="@color/grey_light"
+            android:layout_marginBottom="@dimen/Layout_mar_left_16"
+            android:layout_marginTop="@dimen/Layout_mar_left_16"/>
+
+<!--cod-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                  <EditText
+                    android:id="@+id/cod_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 \n Написанно строк кода"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:focusable="false"
+                    android:fontFamily="sans-serif-condensed"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="@dimen/Line_size_1"
+            android:layout_height="match_parent"
+            android:background="@color/grey_light"
+            android:layout_marginBottom="@dimen/Layout_mar_left_16"
+            android:layout_marginTop="@dimen/Layout_mar_left_16"/>
+
+<!--project-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/project_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 \nПроектов"
+                    android:gravity="center"
+                    android:enabled="false"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:focusable="false"
+                    android:fontFamily="sans-serif-condensed"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
+
+
 
     <!--Мобильный телефон-->
  <LinearLayout
@@ -44,6 +144,7 @@
                  android:textColor="@color/black"
                  android:textColorHint="@color/grey"
                  android:focusable="false"
+                 android:fontFamily="sans-serif-condensed"
                  />
          </android.support.design.widget.TextInputLayout>
 
@@ -93,9 +194,11 @@
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
                     android:text="vlad.verevkin@gmail.com"
+                    android:focusable="false"
                     android:enabled="false"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
+                    android:fontFamily="sans-serif-condensed"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -124,7 +227,7 @@
 
         <ImageView
             style="@style/icon.left"
-            android:src="@drawable/ic_email_black_24dp"/>
+            android:src="@drawable/vk_circle"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -148,7 +251,9 @@
                     android:text="vk.com/Vlad_Verevkin"
                     android:enabled="false"
                     android:textColor="@color/black"
+                    android:focusable="false"
                     android:textColorHint="@color/grey"
+                    android:fontFamily="sans-serif-condensed"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -177,7 +282,7 @@
 
         <ImageView
             style="@style/icon.left"
-            android:src="@drawable/ic_email_black_24dp"/>
+            android:src="@drawable/github_circle"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -200,8 +305,10 @@
                     android:inputType="text"
                     android:text="github.com/vlad/DevIntensive"
                     android:enabled="false"
+                    android:focusable="false"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
+                    android:fontFamily="sans-serif-condensed"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -229,16 +336,17 @@
 
         <ImageView
             style="@style/icon.left"
-            android:src="@drawable/ic_email_black_24dp"/>
+            android:src="@drawable/account_circle"/>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/Layout_height_72"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:layout_marginLeft="@dimen/Layout_mar_left_32"
-            android:layout_marginRight="@dimen/Layout_mar_right_16">
+            android:layout_marginRight="@dimen/Layout_mar_right_16"
+            >
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -247,13 +355,15 @@
                 <EditText
                     android:id="@+id/about_et"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="О себе"
-                    android:inputType="text"
-                    android:text="много текта много текта много текта"
+                    android:text="много текта много текта много текта ну очень много много текта много текта много текта ну очень многомного текта много текта много текта ну очень много"
                     android:enabled="false"
+                    android:focusable="false"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
+                    android:fontFamily="sans-serif-condensed"
+
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -261,5 +371,6 @@
 
 
     </LinearLayout>
-
 </LinearLayout>
+
+

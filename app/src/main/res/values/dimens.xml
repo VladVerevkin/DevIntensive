@@ -6,16 +6,20 @@
     <dimen  name = "Baseline_grid_8" > 8dp </dimen>
     <dimen  name = "Iconography_toolbars_align_4" > 4dp </dimen>
     <dimen  name = "Icon_24" > 24dp </dimen>
+    <dimen  name = "Baseline_grid_0" > 0dp </dimen>
+    <dimen  name = "Layout_mar_left_8"> 8dp</dimen>
 
-    <!-- Mobile -->
     <dimen  name = "Layout_mar_left_16" > 16dp </dimen>
     <dimen  name = "Layout_mar_left_24" > 24dp </dimen>
     <dimen  name = "Layout_mar_left_32" > 32dp </dimen>
     <dimen  name = "Layout_mar_left_72" > 72dp </dimen>
     <dimen  name = "Layout_mar_top_24" > 24dp </dimen>
+    <dimen  name = "Layout_mar_top_16" > 16dp </dimen>
     <dimen  name = "Layout_mar_right_32" > 32dp </dimen>
     <dimen  name = "Layout_mar_right_16" > 16dp </dimen>
     <dimen  name = "Layout_height_72" > 72dp </dimen>
+    <dimen  name = "Layout_height_104" > 104dp </dimen>
+    <dimen  name = "Layout_height_16" > 16dp </dimen>
     <dimen name="Line_size_1">1dp</dimen>
 
 
