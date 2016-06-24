@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Веревкин Владислав</string>
+    <string name="rate">0</string>
+    <string name="rate_hint">Рейтинг</string>
+    <string name="code">0</string>
+    <string name="code_hint">Написанно строк кода</string>
+    <string name="project">0</string>
+    <string name="project_hint">Проектов</string>
+    <string name="phone">+7(988)248-00-38</string>
+    <string name="phone_hint">Мобильный телефон</string>
+    <string name="vk_hint">Профиль в VK</string>
+    <string name="vk">vk.com/Vlad_Verevkin</string>
+    <string name="mail_hint">E-mail</string>
+    <string name="mail">vlad.verevkin@gmail.com</string>
+    <string name="git">github.com/vlad/DevIntensive</string>
+    <string name="git_hint">Репозиторий</string>
+    <string name="about">много текта много текта много текта ну очень много много текта много текта много текта ну очень многомного текта много текта много текта ну очень много</string>
+    <string name="about_hint"> О себе </string>
 </resources>

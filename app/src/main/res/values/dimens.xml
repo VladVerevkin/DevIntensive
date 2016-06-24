@@ -19,6 +19,7 @@
     <dimen  name = "Layout_mar_right_16" > 16dp </dimen>
     <dimen  name = "Layout_height_72" > 72dp </dimen>
     <dimen  name = "Layout_height_104" > 104dp </dimen>
+    <dimen  name = "Layout_height_56" > 56dp </dimen>
     <dimen  name = "Layout_height_16" > 16dp </dimen>
     <dimen name="Line_size_1">1dp</dimen>
 
