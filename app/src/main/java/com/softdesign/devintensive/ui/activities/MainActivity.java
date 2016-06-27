@@ -1,6 +1,8 @@
 package com.softdesign.devintensive.ui.activities;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -43,6 +45,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<EditText> mUserInfoViews;
     private Boolean mFlag=false;
 
+    private RoundedAvatarDrawable mAvatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfoViews.add(mUserBio);
 
         mFab.setOnClickListener(this);
+
+
 
         setupToolbar();
         setupDrawer();
@@ -244,4 +250,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             super.onBackPressed();
         }
     }
+
+
+
 }
