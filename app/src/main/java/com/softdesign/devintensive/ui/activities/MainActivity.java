@@ -1,22 +1,102 @@
 package com.softdesign.devintensive.ui.activities;
 
+import android.content.Context;
+import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.softdesign.devintensive.R;
+import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
+import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = ConstantManager.TAG_Prefix+"Main Activity";
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = ConstantManager.TAG_Prefix + "Main Activity";
+
+    private DataManager mDataManager;
+    private int mCurrentEditMode = 0;
+
+    private CoordinatorLayout mCoordinatorLayout;
+    private Toolbar mToolbar;
+    private DrawerLayout mNavigationDrawer;
+
+    private FloatingActionButton mFab;
+    private EditText mUserPhone, mUserMail, mUserVK, mUserGit, mUserBio;
+    private List<EditText> mUserInfoViews;
+    private Boolean mFlag=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate");
+        mDataManager = DataManager.getInstance();
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
 
+        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+        mUserPhone = (EditText) findViewById(R.id.phone_et);
+        mUserMail = (EditText) findViewById(R.id.email_et);
+        mUserVK = (EditText) findViewById(R.id.vkcom_et);
+        mUserGit = (EditText) findViewById(R.id.github_et);
+        mUserBio = (EditText) findViewById(R.id.about_et);
+        mUserInfoViews = new ArrayList<>();
+        mUserInfoViews.add(mUserPhone);
+        mUserInfoViews.add(mUserMail);
+        mUserInfoViews.add(mUserVK);
+        mUserInfoViews.add(mUserGit);
+        mUserInfoViews.add(mUserBio);
+
+        mFab.setOnClickListener(this);
+
+        setupToolbar();
+        setupDrawer();
+        loadUserInfoValue();
+
+        if (savedInstanceState == null) {
+
+        } else {
+            mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
+            changeEditMode(mCurrentEditMode);
+        }
+
+        Log.d(TAG, "onCreate");
+    }
+
+
+
+    private void setupDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                showSnackbar(item.getTitle().toString());
+                item.setChecked(true);
+                mNavigationDrawer.closeDrawer(GravityCompat.START);
+                return false;
+            }
+
+        });
+
+        Log.d(TAG, "setupDrawer");
     }
 
     @Override
@@ -35,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
+        saveUserInfoValue();
     }
 
     @Override
@@ -53,5 +134,122 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d(TAG, "onRestart");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                if (mCurrentEditMode == 0) {
+                    changeEditMode(1);
+                    mCurrentEditMode = 1;
+                } else {
+                    changeEditMode(0);
+                    mCurrentEditMode = 0;
+                }
+
+                break;
+
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState");
+        outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode);
+
+    }
+
+
+    private void showSnackbar(String message) {
+        Log.d(TAG, "showSnackbar1");
+        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
+        Log.d(TAG, "showSnackbar2");
+    }
+
+    private void setupToolbar() {
+        Log.d(TAG, "setupToolbar1");
+        setSupportActionBar(mToolbar);
+        Log.d(TAG, "setupToolbar2");
+        ActionBar actionbar = getSupportActionBar();
+        Log.d(TAG, "setupToolbar3");
+        if (actionbar != null) {
+            Log.d(TAG, "setupToolbar4");
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionbar.setDisplayHomeAsUpEnabled(true);
+
+        }
+        Log.d(TAG, "setupToolbar5");
+    }
+
+    private void changeEditMode(int mode) {
+        mFab.setImageResource(R.drawable.ic_done_black_24dp);
+        if (mode == 1) {
+            for (EditText userValue : mUserInfoViews) {
+                userValue.setEnabled(true);
+                userValue.setFocusable(true);
+                userValue.setFocusableInTouchMode(true);
+            }
+        } else {
+            mFab.setImageResource(R.drawable.ic_create_black_24dp);
+            for (EditText userValue : mUserInfoViews) {
+                userValue.setEnabled(false);
+                userValue.setFocusable(false);
+                userValue.setFocusableInTouchMode(false);
+                saveUserInfoValue();
+            }
+        }
+
+    }
+
+    private void loadUserInfoValue() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserInfoViews.get(i).setText(userData.get(i));
+        }
+    }
+
+    private void saveUserInfoValue() {
+        List<String> userData = new ArrayList<>();
+        for (EditText userFieldView : mUserInfoViews) {
+            userData.add(userFieldView.getText().toString());
+        }
+        mDataManager.getPreferenceManager().saveUserProfileData(userData);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected1");
+        if (item.getItemId() == android.R.id.home) {
+            Log.d(TAG, "onOptionsItemSelected2");
+            mNavigationDrawer.openDrawer(GravityCompat.START);
+        }
+        Log.d(TAG, "onOptionsItemSelected3");
+
+        if (mNavigationDrawer.isActivated() == true) {
+            Log.d(TAG, "onOptionsItemSelected4");
+            mFlag = mNavigationDrawer.isActivated();
+            Log.d(TAG, "onOptionsItemSelected41");
+            onBackPressed();
+        }
+        Log.d(TAG, "onOptionsItemSelected5");
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed1");
+        if (mFlag == true) {
+            Log.d(TAG, "onBackPressed2");
+            mNavigationDrawer.closeDrawer(GravityCompat.START);
+        }
+        else {
+            Log.d(TAG, "onBackPressed3");
+            super.onBackPressed();
+        }
     }
 }
