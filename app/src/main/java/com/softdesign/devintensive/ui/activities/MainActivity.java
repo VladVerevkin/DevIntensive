@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         setupToolbar();
         setupDrawer();
+
         loadUserInfoValue();
 
         if (savedInstanceState == null) {
@@ -83,21 +84,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
 
-    private void setupDrawer() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                showSnackbar(item.getTitle().toString());
-                item.setChecked(true);
-                mNavigationDrawer.closeDrawer(GravityCompat.START);
-                return false;
-            }
-
-        });
-
-        Log.d(TAG, "setupDrawer");
-    }
 
     @Override
     protected void onStart() {
@@ -164,24 +150,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private void showSnackbar(String message) {
-        Log.d(TAG, "showSnackbar1");
+        Log.d(TAG, "showSnackbar");
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
-        Log.d(TAG, "showSnackbar2");
+
+
     }
 
     private void setupToolbar() {
-        Log.d(TAG, "setupToolbar1");
         setSupportActionBar(mToolbar);
-        Log.d(TAG, "setupToolbar2");
-        ActionBar actionbar = getSupportActionBar();
-        Log.d(TAG, "setupToolbar3");
+          ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
-            Log.d(TAG, "setupToolbar4");
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
 
         }
-        Log.d(TAG, "setupToolbar5");
     }
 
     private void changeEditMode(int mode) {
@@ -220,35 +202,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
+    private void setupDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        Log.d(TAG, "SetupDrawer");
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                showSnackbar(item.getTitle().toString());
+                item.setChecked(true);
+                mNavigationDrawer.closeDrawer(GravityCompat.START);
+                return false;
+            }
+
+        });
+
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected1");
+        Log.d(TAG, "onOptionsItemSelected");
         if (item.getItemId() == android.R.id.home) {
-            Log.d(TAG, "onOptionsItemSelected2");
             mNavigationDrawer.openDrawer(GravityCompat.START);
+            mFlag=true;
         }
-        Log.d(TAG, "onOptionsItemSelected3");
 
-        if (mNavigationDrawer.isActivated() == true) {
-            Log.d(TAG, "onOptionsItemSelected4");
-            mFlag = mNavigationDrawer.isActivated();
-            Log.d(TAG, "onOptionsItemSelected41");
-            onBackPressed();
-        }
-        Log.d(TAG, "onOptionsItemSelected5");
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed1");
         if (mFlag == true) {
-            Log.d(TAG, "onBackPressed2");
+            Log.d(TAG, "true");
+            mFlag=false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
+
         }
         else {
-            Log.d(TAG, "onBackPressed3");
+
+            Log.d(TAG, "false");
             super.onBackPressed();
         }
     }
