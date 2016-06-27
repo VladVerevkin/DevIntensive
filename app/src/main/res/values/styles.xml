@@ -8,4 +8,54 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <style name="icon">
+        <item name="android:layout_height">@dimen/Icon_24</item>
+        <item name="android:layout_width">@dimen/Icon_24</item>
+    </style>
+
+    <style name="icon.left" parent="icon">
+        <item name="android:layout_gravity">top|left</item>
+        <item name="android:layout_marginTop">@dimen/Layout_mar_top_24</item>
+        <item name="android:layout_marginLeft">@dimen/Layout_mar_left_16</item>
+    </style>
+
+    <style name="icon.right" parent="icon">
+        <item name="android:layout_gravity">top|right</item>
+        <item name="android:layout_marginTop">@dimen/Layout_mar_top_24</item>
+        <item name="android:layout_marginRight">@dimen/Layout_mar_right_32</item>
+    </style>
+
+    <style name="edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:enabled">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="edit_text.white" parent="edit_text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="edit_text.black" parent="edit_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey</item>
+    </style>
+
+    <style name="view_t">
+      <item name="android:layout_height">@dimen/Line_size_1</item>
+      <item name="android:background">@color/grey_light</item>
+     </style>
+
+    <style name="view_t.ver" parent="view_t">
+      <item name="android:layout_height">@dimen/Line_size_1</item>
+      <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="view_t.hor" parent="view_t">
+        <item name="android:layout_width">@dimen/Line_size_1</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>
