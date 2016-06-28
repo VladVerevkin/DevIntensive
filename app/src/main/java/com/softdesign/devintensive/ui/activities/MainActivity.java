@@ -1,9 +1,8 @@
 package com.softdesign.devintensive.ui.activities;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,16 +10,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
@@ -43,9 +43,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FloatingActionButton mFab;
     private EditText mUserPhone, mUserMail, mUserVK, mUserGit, mUserBio;
     private List<EditText> mUserInfoViews;
-    private Boolean mFlag=false;
-
-    private RoundedAvatarDrawable mAvatar;
+    private Boolean mFlag = false;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +71,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfoViews.add(mUserVK);
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUserBio);
-
         mFab.setOnClickListener(this);
-
 
 
         setupToolbar();
         setupDrawer();
+
 
         loadUserInfoValue();
 
@@ -89,12 +91,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
+
     }
 
     @Override
@@ -113,8 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
-    }
+        }
 
     @Override
     protected void onDestroy() {
@@ -164,7 +163,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void setupToolbar() {
         setSupportActionBar(mToolbar);
-          ActionBar actionbar = getSupportActionBar();
+        ActionBar actionbar = getSupportActionBar();
         if (actionbar != null) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
@@ -230,8 +229,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.d(TAG, "onOptionsItemSelected");
         if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
-            mFlag=true;
+            mFlag = true;
         }
+
+        circleDraw();
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -240,17 +242,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onBackPressed() {
         if (mFlag == true) {
             Log.d(TAG, "true");
-            mFlag=false;
+            mFlag = false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
 
-        }
-        else {
+        } else {
 
             Log.d(TAG, "false");
             super.onBackPressed();
         }
     }
 
-
-
+    public void circleDraw(){
+        BitmapDrawable bImage = (BitmapDrawable) getResources().getDrawable(R.drawable.ava);
+        RoundedAvatarDrawable RondedAvatarImg = new RoundedAvatarDrawable(bImage.getBitmap());
+        Bitmap bImageRwonded = RondedAvatarImg.getBitmap();
+        ImageView mImg = (ImageView) findViewById(R.id.avatar);
+        mImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
+    }
 }

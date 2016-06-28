@@ -1,5 +1,4 @@
 package com.softdesign.devintensive.utils;
-
 /*
  * Copyright 2013 Evelio Tarazona Caceres <evelio@evelio.info>
  *
@@ -15,6 +14,8 @@ package com.softdesign.devintensive.utils;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import android.graphics.Bitmap;
 
         import android.graphics.Bitmap;
         import android.graphics.BitmapShader;
