@@ -88,11 +88,11 @@
                 android:textSize="@dimen/Font_Size_16"/>
 
         </LinearLayout>
+
         <View
             style="@style/view_t.hor"
             android:layout_marginBottom="@dimen/Layout_mar_left_16"
             android:layout_marginTop="@dimen/Layout_mar_left_16"/>
-
 <!--cod-->
         <LinearLayout
             android:layout_width="0dp"
