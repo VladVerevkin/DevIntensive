@@ -26,6 +26,9 @@
     <dimen name="Line_size_1">1dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
 
+    <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="placeholder_photo_size_48">48dp</dimen>
+
 
     <!-- Text -->
     <dimen  name = "Text_View_Width_150" > 150dp </dimen>
@@ -41,5 +44,4 @@
     <dimen  name = "Font_Size_13" > 13sp </dimen>
     <dimen  name = "Font_Size_15" > 15sp </dimen>
     <dimen  name = "Font_Size_12" > 12sp </dimen>
-
 </resources>

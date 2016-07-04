@@ -1,0 +1,315 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_record2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@color/grey">
+
+            <!--reit-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/rate"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_24"/>
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/rate_hint"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_16"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/view_t.hor"
+                android:layout_marginBottom="@dimen/Layout_mar_left_16"
+                android:layout_marginTop="@dimen/Layout_mar_left_16"/>
+            <!--cod-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/code"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_24"/>
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/code_hint"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_16"/>
+
+            </LinearLayout>
+            <View
+                style="@style/view_t.hor"
+                android:layout_marginBottom="@dimen/Layout_mar_left_16"
+                android:layout_marginTop="@dimen/Layout_mar_left_16"/>
+
+            <!--project-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/project"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_24"/>
+
+                <TextView
+                    style="@style/edit_text.white"
+                    android:text="@string/project_hint"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="@dimen/Font_Size_16"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Мобильный телефон-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/Baseline_grid_8"
+            android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_call_black_24dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Layout_height_72"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/Layout_mar_left_32"
+                android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/phone_et"
+                        style="@style/edit_text.black"
+                        android:hint="@string/phone_hint"
+                        android:inputType="phone"
+                        android:text="@string/phone"
+                        android:fontFamily="sans-serif-condensed"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/call_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_phone_in_talk_black_24dp"/>
+
+        </LinearLayout>
+        <View
+            style="@style/view_t.ver"
+            android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+        <!--Email-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/Baseline_grid_8"
+            android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_email_black_24dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Layout_height_72"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/Layout_mar_left_32"
+                android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/email_et"
+                        style="@style/edit_text.black"
+                        android:inputType="textEmailAddress"
+                        android:hint="@string/mail_hint"
+                        android:text="@string/mail"
+                        android:fontFamily="sans-serif-condensed"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/send_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_send_black_24dp"/>
+
+        </LinearLayout>
+        <View
+            style="@style/view_t.ver"
+            android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+        <!--VK.COM-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/Baseline_grid_8"
+            android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/vk_circle"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Layout_height_72"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/Layout_mar_left_32"
+                android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/vkcom_et"
+                        style="@style/edit_text.black"
+                        android:inputType="text"
+                        android:hint="@string/vk_hint"
+                        android:text="@string/vk"
+                        android:fontFamily="sans-serif-condensed"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/vk_view"
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+
+        </LinearLayout>
+        <View
+            style="@style/view_t.ver"
+            android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+        <!--GITHUB-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/Baseline_grid_8"
+            android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/github_circle"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Layout_height_72"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/Layout_mar_left_32"
+                android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/github_et"
+                        style="@style/edit_text.black"
+                        android:hint="@string/git_hint"
+                        android:inputType="text"
+                        android:text="@string/git"
+                        android:fontFamily="sans-serif-condensed"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/github_view"
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+
+        </LinearLayout>
+        <View
+            style="@style/view_t.ver"
+            android:layout_marginLeft="@dimen/Layout_mar_left_72"/>
+
+        <!--About-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/Baseline_grid_8"
+            android:layout_marginBottom="@dimen/Baseline_grid_8" >
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/account_circle"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/Layout_mar_left_32"
+                android:layout_marginRight="@dimen/Layout_mar_right_16">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/about_et"
+                        android:hint="@string/about_hint"
+                        android:inputType="textMultiLine"
+                        android:text="@string/about"
+                        style="@style/edit_text.black"
+                        android:fontFamily="sans-serif-condensed"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

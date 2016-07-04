@@ -16,4 +16,10 @@
     <string name="git_hint">Репозиторий</string>
     <string name="about">много текта много текта много текта ну очень много много текта много текта много текта ну очень многомного текта много текта много текта ну очень много</string>
     <string name="about_hint"> О себе </string>
+    <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
+    <string name="user_profile_dialog_gallery">загрузить из гелереии</string>
+    <string name="user_profile_dialog_camera">сделать снимок</string>
+    <string name="user_profile_dialog_cancel">отмена</string>
+    <string name="user_profile_dialog_title">изменить фотографию профиля</string>
+    <string name="user_profile_chose_message">выберите фото</string>
 </resources>
