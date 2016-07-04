@@ -8,6 +8,8 @@
     <dimen  name = "Icon_24" > 24dp </dimen>
     <dimen  name = "Baseline_grid_0" > 0dp </dimen>
     <dimen  name = "Layout_mar_left_8"> 8dp</dimen>
+    <dimen  name = "menu_60"> 60dp</dimen>
+    <dimen name="profile_image_size_256">256dp</dimen>
 
     <dimen  name = "Layout_mar_left_16" > 16dp </dimen>
     <dimen  name = "Layout_mar_left_24" > 24dp </dimen>
@@ -22,6 +24,7 @@
     <dimen  name = "Layout_height_56" > 56dp </dimen>
     <dimen  name = "Layout_height_16" > 16dp </dimen>
     <dimen name="Line_size_1">1dp</dimen>
+    <dimen name="fab_right_space">8dp</dimen>
 
 
     <!-- Text -->
