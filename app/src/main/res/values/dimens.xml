@@ -3,26 +3,26 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen  name = "Baseline_grid_8" > 8dp </dimen>
-    <dimen  name = "Iconography_toolbars_align_4" > 4dp </dimen>
-    <dimen  name = "Icon_24" > 24dp </dimen>
-    <dimen  name = "Baseline_grid_0" > 0dp </dimen>
-    <dimen  name = "Layout_mar_left_8"> 8dp</dimen>
-    <dimen  name = "menu_60"> 60dp</dimen>
+    <dimen name="Baseline_grid_8">8dp</dimen>
+    <dimen name="Iconography_toolbars_align_4">4dp</dimen>
+    <dimen name="Icon_24">24dp</dimen>
+    <dimen name="Baseline_grid_0">0dp</dimen>
+    <dimen name="Layout_mar_left_8">8dp</dimen>
+    <dimen name="menu_60">60dp</dimen>
     <dimen name="profile_image_size_256">256dp</dimen>
 
-    <dimen  name = "Layout_mar_left_16" > 16dp </dimen>
-    <dimen  name = "Layout_mar_left_24" > 24dp </dimen>
-    <dimen  name = "Layout_mar_left_32" > 32dp </dimen>
-    <dimen  name = "Layout_mar_left_72" > 72dp </dimen>
-    <dimen  name = "Layout_mar_top_24" > 24dp </dimen>
-    <dimen  name = "Layout_mar_top_16" > 16dp </dimen>
-    <dimen  name = "Layout_mar_right_32" > 32dp </dimen>
-    <dimen  name = "Layout_mar_right_16" > 16dp </dimen>
-    <dimen  name = "Layout_height_72" > 72dp </dimen>
-    <dimen  name = "Layout_height_104" > 104dp </dimen>
-    <dimen  name = "Layout_height_56" > 56dp </dimen>
-    <dimen  name = "Layout_height_16" > 16dp </dimen>
+    <dimen name="Layout_mar_left_16">16dp</dimen>
+    <dimen name="Layout_mar_left_24">24dp</dimen>
+    <dimen name="Layout_mar_left_32">32dp</dimen>
+    <dimen name="Layout_mar_left_72">72dp</dimen>
+    <dimen name="Layout_mar_top_24">24dp</dimen>
+    <dimen name="Layout_mar_top_16">16dp</dimen>
+    <dimen name="Layout_mar_right_32">32dp</dimen>
+    <dimen name="Layout_mar_right_16">16dp</dimen>
+    <dimen name="Layout_height_72">72dp</dimen>
+    <dimen name="Layout_height_104">104dp</dimen>
+    <dimen name="Layout_height_56">56dp</dimen>
+    <dimen name="Layout_height_16">16dp</dimen>
     <dimen name="Line_size_1">1dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
 
@@ -31,17 +31,17 @@
 
 
     <!-- Text -->
-    <dimen  name = "Text_View_Width_150" > 150dp </dimen>
-    <dimen  name = "Ball_Radius_30" > 30dp </dimen>
-    <dimen  name = "Font_Size_16" > 16sp </dimen>
-    <dimen  name = "Font_Size_112" > 112sp </dimen>
-    <dimen  name = "Font_Size_56" > 56sp </dimen>
-    <dimen  name = "Font_Size_45" > 45sp </dimen>
-    <dimen  name = "Font_Size_34" > 34sp </dimen>
-    <dimen  name = "Font_Size_24" > 24sp </dimen>
-    <dimen  name = "Font_Size_20" > 20sp </dimen>
-    <dimen  name = "Font_Size_14" > 14sp </dimen>
-    <dimen  name = "Font_Size_13" > 13sp </dimen>
-    <dimen  name = "Font_Size_15" > 15sp </dimen>
-    <dimen  name = "Font_Size_12" > 12sp </dimen>
+    <dimen name="Text_View_Width_150">150dp</dimen>
+    <dimen name="Ball_Radius_30">30dp</dimen>
+    <dimen name="Font_Size_16">16sp</dimen>
+    <dimen name="Font_Size_112">112sp</dimen>
+    <dimen name="Font_Size_56">56sp</dimen>
+    <dimen name="Font_Size_45">45sp</dimen>
+    <dimen name="Font_Size_34">34sp</dimen>
+    <dimen name="Font_Size_24">24sp</dimen>
+    <dimen name="Font_Size_20">20sp</dimen>
+    <dimen name="Font_Size_14">14sp</dimen>
+    <dimen name="Font_Size_13">13sp</dimen>
+    <dimen name="Font_Size_15">15sp</dimen>
+    <dimen name="Font_Size_12">12sp</dimen>
 </resources>

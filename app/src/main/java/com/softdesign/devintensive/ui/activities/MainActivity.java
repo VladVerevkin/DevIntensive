@@ -31,6 +31,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -53,8 +54,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = ConstantManager.TAG_Prefix + "Main Activity";
 
     private DataManager mDataManager;
-    private int mCurrentEditMode = 0;
 
+    protected int mCurrentEditMode = 0;
     private CoordinatorLayout mCoordinatorLayout;
     private Toolbar mToolbar;
     private DrawerLayout mNavigationDrawer;
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<EditText> mUserInfoViews;
     private Boolean mFlag = false;
     private File mPhotoFile = null;
-    private Uri mSelectedImage=null;
+    private Uri mSelectedImage = null;
     private ImageView mProfileImage;
 
 
@@ -85,16 +86,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mProfilePlaceholder = (RelativeLayout)findViewById(R.id.profile_placeholder);
-        mCollapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-        mAppBarLayout = (AppBarLayout)findViewById(R.id.appbar_layout);
-        mProfileImage=(ImageView)findViewById(R.id.user_photo_img);
+        mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
+        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
+        mProfileImage = (ImageView) findViewById(R.id.user_photo_img);
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mUserPhone = (EditText) findViewById(R.id.phone_et);
         mUserMail = (EditText) findViewById(R.id.email_et);
         mUserVK = (EditText) findViewById(R.id.vkcom_et);
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
+
+
         mUserInfoViews = new ArrayList<>();
         mUserInfoViews.add(mUserPhone);
         mUserInfoViews.add(mUserMail);
@@ -104,19 +107,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFab.setOnClickListener(this);
         mProfilePlaceholder.setOnClickListener(this);
 
-
         setupToolbar();
         setupDrawer();
 
 
         loadUserInfoValue();
-        mCall=(ImageView)findViewById(R.id.call_img);
+        mCall = (ImageView) findViewById(R.id.call_img);
         mCall.setOnClickListener(this);
-        mEmail=(ImageView)findViewById(R.id.send_img);
+        mEmail = (ImageView) findViewById(R.id.send_img);
         mEmail.setOnClickListener(this);
-        mVK=(ImageView)findViewById(R.id.vk_view);
+        mVK = (ImageView) findViewById(R.id.vk_view);
         mVK.setOnClickListener(this);
-        mGitHub=(ImageView)findViewById(R.id.github_view);
+        mGitHub = (ImageView) findViewById(R.id.github_view);
         mGitHub.setOnClickListener(this);
 
         Picasso.with(this)
@@ -159,7 +161,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -186,6 +188,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
                 break;
+
             case R.id.profile_placeholder:
                 // TODO: 02.07.2016  сделать выбор откуда загружать фото
                 showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
@@ -231,7 +234,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setSupportActionBar(mToolbar);
         ActionBar actionbar = getSupportActionBar();
 
-        mAppBarParams=(AppBarLayout.LayoutParams) mCollapsingToolbar.getLayoutParams();
+        mAppBarParams = (AppBarLayout.LayoutParams) mCollapsingToolbar.getLayoutParams();
         if (actionbar != null) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
@@ -264,6 +267,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         }
+
 
     }
 
@@ -301,29 +305,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * Получение результатов из другой Activity (фото из камеры или галереии)
+     *
      * @param requestCode
      * @param resultCode
      * @param data
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       switch (requestCode){
-           case ConstantManager.REQUEST_GALLERY_PICTURE:
-               if (resultCode==RESULT_OK && data != null){
-                   mSelectedImage=data.getData();
-                   insertProfileImage(mSelectedImage);
-               }
-               break;
-           case ConstantManager.REQUEST_CAMERA_PICTURE:
-               if(resultCode==RESULT_OK && mPhotoFile !=null){
-                   Log.d(TAG,"REQUEST_CAMERA_PICTURE1");
-                   mSelectedImage=Uri.fromFile(mPhotoFile);
-                   Log.d(TAG,"REQUEST_CAMERA_PICTURE2");
-                   insertProfileImage(mSelectedImage);
-                   Log.d(TAG,"REQUEST_CAMERA_PICTURE3");
-               }
-               break;
-       }
+        switch (requestCode) {
+            case ConstantManager.REQUEST_GALLERY_PICTURE:
+                if (resultCode == RESULT_OK && data != null) {
+                    mSelectedImage = data.getData();
+                    insertProfileImage(mSelectedImage);
+                }
+                break;
+            case ConstantManager.REQUEST_CAMERA_PICTURE:
+                if (resultCode == RESULT_OK && mPhotoFile != null) {
+                    Log.d(TAG, "REQUEST_CAMERA_PICTURE1");
+                    mSelectedImage = Uri.fromFile(mPhotoFile);
+                    Log.d(TAG, "REQUEST_CAMERA_PICTURE2");
+                    insertProfileImage(mSelectedImage);
+                    Log.d(TAG, "REQUEST_CAMERA_PICTURE3");
+                }
+                break;
+        }
     }
 
     @Override
@@ -354,7 +359,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void circleDraw(){
+    private void circleDraw() {
         BitmapDrawable bImage = (BitmapDrawable) getResources().getDrawable(R.drawable.ava);
         RoundedAvatarDrawable RondedAvatarImg = new RoundedAvatarDrawable(bImage.getBitmap());
         Bitmap bImageRwonded = RondedAvatarImg.getBitmap();
@@ -362,35 +367,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
     }
 
-    private void loadPhotoFromGallery(){
+    private void loadPhotoFromGallery() {
         Intent takeGalleryIntent = new Intent(Intent.ACTION_PICK,
-                                              MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         takeGalleryIntent.setType("image/*");
         startActivityForResult(Intent.createChooser(takeGalleryIntent,
-                                            getString(R.string.user_profile_chose_message)),
-                                            ConstantManager.REQUEST_GALLERY_PICTURE);
+                getString(R.string.user_profile_chose_message)),
+                ConstantManager.REQUEST_GALLERY_PICTURE);
     }
 
-    private void loadPhotoFromCamera(){
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED) {
+    private void loadPhotoFromCamera() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
             Intent takeCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             try {
                 mPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
+                showSnackbar("Устройство не готово, повторите попытку");
                 // TODO: 02.07.2016 обработать ошибку при чтении/записи файла
-            Log.d(TAG,"mPhotoFile = createImageFile");
-            }
+              }
             if (mPhotoFile != null) {
-                // TODO: 02.07.2016 передать фото в интент
                 takeCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                           Uri.fromFile(mPhotoFile));
+                        Uri.fromFile(mPhotoFile));
                 startActivityForResult(takeCaptureIntent,
-                                       ConstantManager.REQUEST_CAMERA_PICTURE);
+                        ConstantManager.REQUEST_CAMERA_PICTURE);
             }
-        }else{
+        } else {
             ActivityCompat.requestPermissions(this, new String[]{
                     android.Manifest.permission.CAMERA,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -408,51 +412,51 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length==2){
-            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // TODO: 02.07.2016 Тут обрабатываем разрешение(разрешение получено) например
                 // вывести сообщение или обработать какой-то логикой если нужно
                 // например сообщение - разрешение получено
 
             }
         }
-        if (grantResults[1]==PackageManager.PERMISSION_GRANTED){
+        if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
             // TODO: 02.07.2016 Тут обрабатываем разрешение(разрешение получено) например
             // вывести сообщение или обработать какой-то логикой если нужно
             // например сообщение - разрешение получено 01:33:10
         }
     }
 
-    private void hideProfilePlaceholder(){
+    private void hideProfilePlaceholder() {
         mProfilePlaceholder.setVisibility(View.GONE);
     }
 
-    private void showProfilePlaceholder(){
+    private void showProfilePlaceholder() {
         mProfilePlaceholder.setVisibility(View.VISIBLE);
     }
 
-    private void lockToolbar(){
+    private void lockToolbar() {
         mAppBarLayout.setExpanded(true, true);
         mAppBarParams.setScrollFlags(0);
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
-    private void unlockToolbar(){
-        mAppBarParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL|AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+    private void unlockToolbar() {
+        mAppBarParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        switch (id){
+        switch (id) {
             case ConstantManager.LOAD_PROFILE_PHOTO:
-               String[] selectItem= {getString(R.string.user_profile_dialog_gallery),getString(R.string.user_profile_dialog_camera), getString(R.string.user_profile_dialog_cancel)};
-               AlertDialog.Builder builder = new AlertDialog.Builder(this);
-               builder.setTitle(getString(R.string.user_profile_dialog_title));
-               builder.setItems(selectItem, new DialogInterface.OnClickListener() {
+                String[] selectItem = {getString(R.string.user_profile_dialog_gallery), getString(R.string.user_profile_dialog_camera), getString(R.string.user_profile_dialog_cancel)};
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.user_profile_dialog_title));
+                builder.setItems(selectItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int choiceItem) {
-                        switch (choiceItem){
+                        switch (choiceItem) {
                             case 0:
                                 // TODO: 02.07.2016 загрузить из галереии
                                 //showSnackbar("загрузить из галереии");
@@ -461,7 +465,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             case 1:
                                 // TODO: 02.07.2016 загрузить из камеры
                                 loadPhotoFromCamera();
-                                Log.d(TAG,"case1loadPhotoFromCamera");
+                                Log.d(TAG, "case1loadPhotoFromCamera");
                                 showSnackbar("загрузить из камеры");
                                 break;
                             case 2:
@@ -477,11 +481,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private File createImageFile() throws IOException{
+    private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName ="JPEG_"+timeStamp+"_";
+        String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName,".jpg",storageDir);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
 
         ContentValues values = new ContentValues();
@@ -495,20 +499,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void insertProfileImage(Uri selectedImage) {
-        Log.d(TAG,"insertProfileImage1");
+        Log.d(TAG, "insertProfileImage1");
         Picasso.with(this)
                 .load(selectedImage)
                 .into(mProfileImage);
         // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
         // TODO: 02.07.2016 01:38:04
-        Log.d(TAG,"insertProfileImage2");
+        Log.d(TAG, "insertProfileImage2");
         mDataManager.getPreferenceManager().saveUserPhoto(selectedImage);
-        Log.d(TAG,"insertProfileImage3");
+        Log.d(TAG, "insertProfileImage3");
     }
 
-    private void openApplicationSettings(){
+    private void openApplicationSettings() {
         Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.parse("package:"+getPackageName()));
+                Uri.parse("package:" + getPackageName()));
 
         startActivityForResult(appSettingsIntent,
                 ConstantManager.PERMISSION_REQUEST_SETTINGS_CODE);
@@ -516,11 +520,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private void call() {
-       // TODO: 02.07.2016 придумать динамический поиск по ключу USER_PHONE_KEY
-       List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-       Uri number=Uri.parse("tel:"+userData.get(0));
-       Intent callIntent = new Intent(Intent.ACTION_DIAL,number);
-       startActivity(callIntent);
+        // TODO: 02.07.2016 придумать динамический поиск по ключу USER_PHONE_KEY
+        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
+        Uri number = Uri.parse("tel:" + userData.get(0));
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+        startActivity(callIntent);
     }
 
     private void sendEmail() {
@@ -529,7 +533,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 // У намерения нет URI, поэтому указываем MIME типа "text/plain"
         emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {userData.get(1)}); // получатель
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userData.get(1)}); // получатель
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DevIntensive automatic send");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! This test message from new APP");
         startActivity(emailIntent);
@@ -538,15 +542,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void vkView() {
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_VK_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+userData.get(2)));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(2)));
         startActivity(webIntent);
     }
 
     private void gitHubView() {
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_GITHUB_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+userData.get(3)));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(3)));
         startActivity(webIntent);
+    }
+
+    public void signInClick() {
+        showSnackbar("Вы нажали войти");
     }
 }
 
