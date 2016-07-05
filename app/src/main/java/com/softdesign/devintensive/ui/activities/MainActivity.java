@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Picasso.with(this)
                 .load(mDataManager.getPreferenceManager().loadUserPhoto())
-                .placeholder(R.drawable.userphoto)// TODO: 02.07.2016 01:38:04
+                .placeholder(R.drawable.user_bg)// TODO: 02.07.2016 01:38:04
                 // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
                 .into(mProfileImage);
 
@@ -438,6 +438,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             } catch (IOException e) {
                 e.printStackTrace();
                 showSnackbar("Устройство не готово, повторите попытку");
+
+                Picasso.with(this)
+                        .load(mDataManager.getPreferenceManager().loadUserPhoto())
+                        .placeholder(R.drawable.user_bg)
+                        .into(mProfileImage);
                 // TODO: 02.07.2016 обработать ошибку при чтении/записи файла
             }
             if (mPhotoFile != null) {
@@ -529,18 +534,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         switch (choiceItem) {
                             case 0:
                                 // TODO: 02.07.2016 загрузить из галереии
-                                //showSnackbar("загрузить из галереии");
                                 loadPhotoFromGallery();
                                 break;
                             case 1:
                                 // TODO: 02.07.2016 загрузить из камеры
                                 loadPhotoFromCamera();
-                                showSnackbar("загрузить из камеры");
                                 break;
                             case 2:
                                 // TODO: 02.07.2016 cancel
                                 dialog.cancel();
-                                //showSnackbar("отмена");
                         }
                     }
                 });
@@ -550,7 +552,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * формирование фото файла полученного с фотоаппатара и его сохранение в каталог
+     * @return фозвращается ссылка на файл
+      */
     private File createImageFile() throws IOException {
+
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "createImageFile");
         }
@@ -570,6 +577,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return image;
     }
 
+    /**
+     * установка фото в профиль
+     * @param selectedImage содержит устанавливаемую фото
+     */
     private void insertProfileImage(Uri selectedImage) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "insertProfileImage");
@@ -577,11 +588,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Picasso.with(this)
                 .load(selectedImage)
                 .into(mProfileImage);
-        // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
+        // сделать ПЛЭЙСХОЛДЕР ТРАНСПАРЕНТ+CROP
         // TODO: 02.07.2016 01:38:04
         mDataManager.getPreferenceManager().saveUserPhoto(selectedImage);
     }
 
+    /**
+     * открытие окна настроек разрешений
+     */
     private void openApplicationSettings() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "openApplicationSettings");
@@ -593,18 +607,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 ConstantManager.PERMISSION_REQUEST_SETTINGS_CODE);
     }
 
-
+    /**
+     * вызов интента для набора номера телефона
+     */
     private void call() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "call");
         }
-        // TODO: 02.07.2016 придумать динамический поиск по ключу USER_PHONE_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Uri number = Uri.parse("tel:" + userData.get(0));
         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
         startActivity(callIntent);
     }
 
+    /**
+     * Вызов интента для формированияписьма на отправку
+     */
     private void sendEmail() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "sendEmail");
@@ -612,29 +630,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_MAIL_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-// У намерения нет URI, поэтому указываем MIME типа "text/plain"
         emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userData.get(1)}); // получатель
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userData.get(1)});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DevIntensive automatic send");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! This test message from new APP");
         startActivity(emailIntent);
     }
 
+    /**
+     * Вызов интента для отображения странички с vk
+     */
     private void vkView() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "vkView");
         }
-        // TODO: 02.07.2016 придумать динамический поиск по ключу USER_VK_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(2)));
         startActivity(webIntent);
     }
 
+    /**
+     * Вызов интента для отображения странички с github
+     */
     private void gitHubView() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "gitHubView");
         }
-        // TODO: 02.07.2016 придумать динамический поиск по ключу USER_GITHUB_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(3)));
         startActivity(webIntent);

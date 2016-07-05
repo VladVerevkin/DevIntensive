@@ -28,10 +28,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Layout_mar_left_24"
+                android:layout_marginRight="@dimen/Layout_height_104"
                 android:background="@drawable/log_bar"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/login_enter_str"
+                android:gravity="center"
                 android:textColor="@color/color_accent"
                 android:textSize="@dimen/Font_Size_24" />
 
@@ -44,6 +45,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:hint="@string/mail_hint"
                 android:inputType="textEmailAddress"
+                android:textSize="@dimen/Font_Size_16"
                 android:text="@string/mail"
                 android:textColor="@color/grey"
                 android:textColorHint="@color/grey_light" />
