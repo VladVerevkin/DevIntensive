@@ -28,6 +28,8 @@
 
     <dimen name="placeholder_photo_size_90">90dp</dimen>
     <dimen name="placeholder_photo_size_48">48dp</dimen>
+    <dimen name="nav_bar_head_172">172dp</dimen>
+    <dimen name="user_prof_nav_104">104dp</dimen>
 
 
     <!-- Text -->

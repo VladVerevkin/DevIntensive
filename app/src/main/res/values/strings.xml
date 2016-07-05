@@ -3,7 +3,7 @@
     <string name="rate">0</string>
     <string name="rate_hint">Рейтинг</string>
     <string name="code">0</string>
-    <string name="code_hint">Написанно строк кода</string>
+    <string name="code_hint">Написано строк кода</string>
     <string name="project">0</string>
     <string name="project_hint">Проектов</string>
     <string name="phone">+7(988)248-00-38</string>
@@ -37,4 +37,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="password">Пароль</string>
+    <string name="login_enter">Войти</string>
+    <string name="login_repair_password">забыли пароль?</string>
+    <string name="login_enter_str">ВОЙТИ</string>
+    <string name="menu_profile">Мой профиль</string>
+    <string name="menu_comand">Команда</string>
 </resources>

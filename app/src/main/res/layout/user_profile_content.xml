@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="@dimen/user_prof_nav_104"
             android:layout_weight="1"
             android:background="@color/grey"
             android:gravity="center_vertical"

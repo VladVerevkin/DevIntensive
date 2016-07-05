@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/login_bg"
@@ -9,10 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/Layout_height_72"
         android:layout_marginRight="@dimen/Layout_height_72"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -32,7 +31,7 @@
                 android:layout_marginRight="@dimen/Layout_mar_left_24"
                 android:background="@drawable/log_bar"
                 android:fontFamily="sans-serif-medium"
-                android:text="    ВОЙТИ"
+                android:text="@string/login_enter_str"
                 android:textColor="@color/color_accent"
                 android:textSize="@dimen/Font_Size_24" />
 
@@ -56,7 +55,7 @@
                 android:layout_marginRight="@dimen/Layout_mar_left_24"
                 android:layout_marginTop="@dimen/Layout_height_16"
                 android:fontFamily="sans-serif-condensed"
-                android:hint="Пароль"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColor="@color/grey"
                 android:textColorHint="@color/grey_light" />
@@ -75,7 +74,7 @@
                 android:layout_marginRight="@dimen/placeholder_photo_size_48"
                 android:background="@color/color_accent"
                 android:fontFamily="sans-serif-medium"
-                android:text="Войти"
+                android:text="@string/login_enter"
                 android:textColor="@color/white"
                 android:textSize="@dimen/Font_Size_20" />
 
@@ -91,7 +90,7 @@
                 android:layout_marginLeft="@dimen/Layout_mar_left_24"
                 android:layout_marginRight="@dimen/Layout_mar_left_24"
                 android:background="@color/white"
-                android:text="забыли пароль?" />
+                android:text="@string/login_repair_password" />
 
             <View
                 style="@style/view_login.bot"

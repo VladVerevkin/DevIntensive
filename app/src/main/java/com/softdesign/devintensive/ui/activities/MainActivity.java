@@ -36,6 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private DataManager mDataManager;
 
-    protected int mCurrentEditMode = 0;
+
     private CoordinatorLayout mCoordinatorLayout;
     private Toolbar mToolbar;
     private DrawerLayout mNavigationDrawer;
@@ -80,6 +81,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onCreate");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDataManager = DataManager.getInstance();
@@ -135,48 +139,67 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             changeEditMode(mCurrentEditMode);
         }
 
-        Log.d(TAG, "onCreate");
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onStart");
+        }
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onResume");
+        }
     }
 
     @Override
     protected void onPause() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onPause");
+        }
         super.onPause();
-        Log.d(TAG, "onPause");
         saveUserInfoValue();
+
     }
 
     @Override
     protected void onStop() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onStop");
+        }
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onDestroy");
+        }
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
     }
 
     @Override
     protected void onRestart() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onRestart");
+        }
         super.onRestart();
-        Log.d(TAG, "onRestart");
+
     }
 
     @Override
     public void onClick(View v) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onClick");
+        }
         switch (v.getId()) {
             case R.id.fab:
                 if (mCurrentEditMode == 0) {
@@ -217,20 +240,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onSaveInstanceState");
+        }
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState");
         outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode);
 
     }
 
     private void showSnackbar(String message) {
-        Log.d(TAG, "showSnackbar");
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "showSnackbar");
+        }
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
 
 
     }
 
     private void setupToolbar() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "setupToolbar");
+        }
         setSupportActionBar(mToolbar);
         ActionBar actionbar = getSupportActionBar();
 
@@ -243,6 +273,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void changeEditMode(int mode) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "changeEditMode");
+        }
         mFab.setImageResource(R.drawable.ic_done_black_24dp);
         if (mode == 1) {
             for (EditText userValue : mUserInfoViews) {
@@ -272,6 +305,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void loadUserInfoValue() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "loadUserInfoValue");
+        }
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
@@ -279,6 +315,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void saveUserInfoValue() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "saveUserInfoValue");
+        }
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
@@ -287,8 +326,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupDrawer() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "setupDrawer");
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        Log.d(TAG, "SetupDrawer");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -312,6 +353,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onActivityResult");
+        }
         switch (requestCode) {
             case ConstantManager.REQUEST_GALLERY_PICTURE:
                 if (resultCode == RESULT_OK && data != null) {
@@ -321,11 +365,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case ConstantManager.REQUEST_CAMERA_PICTURE:
                 if (resultCode == RESULT_OK && mPhotoFile != null) {
-                    Log.d(TAG, "REQUEST_CAMERA_PICTURE1");
                     mSelectedImage = Uri.fromFile(mPhotoFile);
-                    Log.d(TAG, "REQUEST_CAMERA_PICTURE2");
                     insertProfileImage(mSelectedImage);
-                    Log.d(TAG, "REQUEST_CAMERA_PICTURE3");
                 }
                 break;
         }
@@ -333,7 +374,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onOptionsItemSelected");
+        }
         if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
             mFlag = true;
@@ -347,19 +390,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onBackPressed");
+        }
         if (mFlag == true) {
-            Log.d(TAG, "true");
             mFlag = false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
 
         } else {
-
-            Log.d(TAG, "false");
             super.onBackPressed();
         }
     }
 
     private void circleDraw() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "circleDraw");
+        }
         BitmapDrawable bImage = (BitmapDrawable) getResources().getDrawable(R.drawable.ava);
         RoundedAvatarDrawable RondedAvatarImg = new RoundedAvatarDrawable(bImage.getBitmap());
         Bitmap bImageRwonded = RondedAvatarImg.getBitmap();
@@ -368,6 +414,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void loadPhotoFromGallery() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "loadPhotoFromGallery");
+        }
         Intent takeGalleryIntent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         takeGalleryIntent.setType("image/*");
@@ -377,6 +426,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void loadPhotoFromCamera() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "loadPhotoFromCamera");
+        }
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
@@ -387,7 +439,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 e.printStackTrace();
                 showSnackbar("Устройство не готово, повторите попытку");
                 // TODO: 02.07.2016 обработать ошибку при чтении/записи файла
-              }
+            }
             if (mPhotoFile != null) {
                 takeCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(mPhotoFile));
@@ -412,6 +464,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onRequestPermissionsResult");
+        }
         if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // TODO: 02.07.2016 Тут обрабатываем разрешение(разрешение получено) например
@@ -428,26 +483,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void hideProfilePlaceholder() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "hideProfilePlaceholder");
+        }
         mProfilePlaceholder.setVisibility(View.GONE);
     }
 
     private void showProfilePlaceholder() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "showProfilePlaceholder");
+        }
         mProfilePlaceholder.setVisibility(View.VISIBLE);
     }
 
     private void lockToolbar() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "lockToolbar");
+        }
         mAppBarLayout.setExpanded(true, true);
         mAppBarParams.setScrollFlags(0);
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
     private void unlockToolbar() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "unlockToolbar");
+        }
         mAppBarParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "onCreateDialog");
+        }
         switch (id) {
             case ConstantManager.LOAD_PROFILE_PHOTO:
                 String[] selectItem = {getString(R.string.user_profile_dialog_gallery), getString(R.string.user_profile_dialog_camera), getString(R.string.user_profile_dialog_cancel)};
@@ -465,7 +535,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             case 1:
                                 // TODO: 02.07.2016 загрузить из камеры
                                 loadPhotoFromCamera();
-                                Log.d(TAG, "case1loadPhotoFromCamera");
                                 showSnackbar("загрузить из камеры");
                                 break;
                             case 2:
@@ -482,6 +551,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private File createImageFile() throws IOException {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "createImageFile");
+        }
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
@@ -499,18 +571,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void insertProfileImage(Uri selectedImage) {
-        Log.d(TAG, "insertProfileImage1");
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "insertProfileImage");
+        }
         Picasso.with(this)
                 .load(selectedImage)
                 .into(mProfileImage);
         // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
         // TODO: 02.07.2016 01:38:04
-        Log.d(TAG, "insertProfileImage2");
         mDataManager.getPreferenceManager().saveUserPhoto(selectedImage);
-        Log.d(TAG, "insertProfileImage3");
     }
 
     private void openApplicationSettings() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "openApplicationSettings");
+        }
         Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:" + getPackageName()));
 
@@ -520,6 +595,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private void call() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "call");
+        }
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_PHONE_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Uri number = Uri.parse("tel:" + userData.get(0));
@@ -528,6 +606,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void sendEmail() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "sendEmail");
+        }
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_MAIL_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -540,6 +621,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void vkView() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "vkView");
+        }
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_VK_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(2)));
@@ -547,15 +631,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void gitHubView() {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "gitHubView");
+        }
         // TODO: 02.07.2016 придумать динамический поиск по ключу USER_GITHUB_KEY
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(3)));
         startActivity(webIntent);
     }
 
-    public void signInClick() {
-        showSnackbar("Вы нажали войти");
-    }
+
 }
 
 
