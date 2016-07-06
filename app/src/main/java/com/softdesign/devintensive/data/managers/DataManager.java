@@ -1,18 +1,17 @@
 package com.softdesign.devintensive.data.managers;
 
 public class DataManager {
-    private static DataManager INSTANCE=null;
+    private static DataManager INSTANCE = null;
     private PreferenceManager mPreferenceManager;
 
 
-
     public DataManager() {
-        this.mPreferenceManager=new PreferenceManager();
+        this.mPreferenceManager = new PreferenceManager();
     }
 
-    public static DataManager getInstance(){
-        if(INSTANCE==null){
-            INSTANCE=new DataManager();
+    public static DataManager getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new DataManager();
         }
         return INSTANCE;
     }

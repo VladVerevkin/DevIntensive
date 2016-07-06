@@ -37,6 +37,7 @@ import android.widget.RelativeLayout;
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
+import com.softdesign.devintensive.data.managers.PreferenceManager;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
 import com.squareup.picasso.Picasso;
@@ -552,8 +553,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * формирование фото файла полученного с фотоаппатара и его сохранение в каталог
+     *
      * @return фозвращается ссылка на файл
-      */
+     */
     private File createImageFile() throws IOException {
 
         if (BuildConfig.DEBUG) {
@@ -577,6 +579,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * установка фото в профиль
+     *
      * @param selectedImage содержит устанавливаемую фото
      */
     private void insertProfileImage(Uri selectedImage) {
@@ -613,8 +616,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "call");
         }
 
-        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        Uri number = Uri.parse("tel:" + userData.get(0));
+        Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
         startActivity(callIntent);
     }
@@ -627,11 +629,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "sendEmail");
         }
-        // TODO: 02.07.2016 придумать динамический поиск по ключу USER_MAIL_KEY
-        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
+
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userData.get(1)});
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{mDataManager.getPreferenceManager().getUserMail()});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DevIntensive automatic send");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! This test message from new APP");
         startActivity(emailIntent);
@@ -644,8 +645,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "vkView");
         }
-        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(2)));
+
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserVK()));
         startActivity(webIntent);
     }
 
@@ -656,8 +657,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "gitHubView");
         }
-        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + userData.get(3)));
+
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserGit()));
         startActivity(webIntent);
     }
 
