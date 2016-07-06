@@ -1,6 +1,5 @@
 package com.softdesign.devintensive.ui.activities;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -31,7 +30,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -614,11 +612,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "call");
         }
+
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         Uri number = Uri.parse("tel:" + userData.get(0));
         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
         startActivity(callIntent);
     }
+
 
     /**
      * Вызов интента для формированияписьма на отправку

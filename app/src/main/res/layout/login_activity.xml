@@ -54,7 +54,7 @@
                         android:fontFamily="sans-serif-medium"
                         android:text="@string/login_enter_str"
                         android:textColor="@color/color_accent"
-                        android:textSize="@dimen/Font_Size_24" />
+                        android:textSize="@dimen/Font_Size_28" />
                 </LinearLayout>
 
                 <LinearLayout
