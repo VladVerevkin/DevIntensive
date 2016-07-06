@@ -46,4 +46,5 @@
     <dimen name="Font_Size_13">13sp</dimen>
     <dimen name="Font_Size_15">15sp</dimen>
     <dimen name="Font_Size_12">12sp</dimen>
+    <dimen name="Font_Size_28">28sp</dimen>
 </resources>

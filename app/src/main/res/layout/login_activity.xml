@@ -1,106 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/login_bg"
+    android:baselineAligned="false"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/Layout_height_72"
         android:layout_marginRight="@dimen/Layout_height_72"
-        android:layout_weight="1"
+
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
 
-            <View
-                style="@style/view_login.bot"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/authorization_box"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="@dimen/Baseline_grid_8">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/Layout_height_104"
-                android:background="@drawable/log_bar"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/login_enter_str"
-                android:gravity="center"
-                android:textColor="@color/color_accent"
-                android:textSize="@dimen/Font_Size_24" />
+                android:orientation="vertical">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24"
-                android:layout_marginTop="@dimen/Layout_height_16"
-                android:fontFamily="sans-serif-condensed"
-                android:hint="@string/mail_hint"
-                android:inputType="textEmailAddress"
-                android:textSize="@dimen/Font_Size_16"
-                android:text="@string/mail"
-                android:textColor="@color/grey"
-                android:textColorHint="@color/grey_light" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/Layout_mar_left_24"
+                    android:background="@color/white" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24"
-                android:layout_marginTop="@dimen/Layout_height_16"
-                android:fontFamily="sans-serif-condensed"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textColor="@color/grey"
-                android:textColorHint="@color/grey_light" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <View
-                style="@style/view_login.bot"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24" />
+                    <View
+                        android:id="@+id/login_indicator"
+                        android:layout_width="4dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/color_accent" />
 
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/placeholder_photo_size_48"
-                android:layout_marginRight="@dimen/placeholder_photo_size_48"
-                android:background="@color/color_accent"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/login_enter"
-                android:textColor="@color/white"
-                android:textSize="@dimen/Font_Size_20" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/login_enter_str"
+                        android:textColor="@color/color_accent"
+                        android:textSize="@dimen/Font_Size_24" />
+                </LinearLayout>
 
-            <View
-                style="@style/view_login"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24"
-                android:background="@color/white"
-                android:text="@string/login_repair_password" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24"
+                        android:layout_marginTop="@dimen/Layout_height_16"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="@string/mail_hint"
+                        android:inputType="textEmailAddress"
+                        android:text="@string/mail"
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey_light"
+                        android:textSize="@dimen/Font_Size_16" />
 
-            <View
-                style="@style/view_login.bot"
-                android:layout_marginLeft="@dimen/Layout_mar_left_24"
-                android:layout_marginRight="@dimen/Layout_mar_left_24" />
-        </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24"
+                        android:layout_marginTop="@dimen/Layout_height_16"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey_light" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        style="@style/view_login.bot"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24" />
+
+                    <Button
+                        android:id="@+id/btn_login"
+                        android:theme="@style/AppTheme.Button.Red"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/placeholder_photo_size_48"
+                        android:layout_marginRight="@dimen/placeholder_photo_size_48"
+                        android:text="@string/login_enter"
+                        android:textSize="@dimen/Font_Size_20" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        style="@style/view_login"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24"
+                        android:background="@color/white"
+                        android:text="@string/login_repair_password" />
+
+                    <View
+                        style="@style/view_login.bot"
+                        android:layout_marginLeft="@dimen/Layout_mar_left_24"
+                        android:layout_marginRight="@dimen/Layout_mar_left_24" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
-
-
 </LinearLayout>
