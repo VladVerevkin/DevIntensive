@@ -55,7 +55,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private DataManager mDataManager;
 
-
     private CoordinatorLayout mCoordinatorLayout;
     private Toolbar mToolbar;
     private DrawerLayout mNavigationDrawer;
@@ -78,6 +77,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mProfileImage;
 
 
+    /**
+     * Инициализация параметров при старте окна
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (BuildConfig.DEBUG) {
@@ -130,17 +134,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
                 .into(mProfileImage);
 
-
         if (savedInstanceState == null) {
 
         } else {
             mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
             changeEditMode(mCurrentEditMode);
         }
-
-
     }
-
 
     @Override
     protected void onStart() {
@@ -166,7 +166,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         super.onPause();
         saveUserInfoValue();
-
     }
 
     @Override
@@ -191,9 +190,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "onRestart");
         }
         super.onRestart();
-
     }
 
+    /**
+     * обработчик нажатия кнопок, на входе ловится id нажатой кнопки
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if (BuildConfig.DEBUG) {
@@ -208,35 +211,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     changeEditMode(0);
                     mCurrentEditMode = 0;
                 }
-
                 break;
-
             case R.id.profile_placeholder:
-                // TODO: 02.07.2016  сделать выбор откуда загружать фото
                 showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
                 break;
             case R.id.call_img:
-                // TODO: 02.07.2016 Набор номера Неявный интент
                 call();
                 break;
             case R.id.send_img:
-                // TODO: 02.07.2016 Набор номера Неявный интент
                 sendEmail();
                 break;
-
             case R.id.vk_view:
-                // TODO: 02.07.2016 Набор номера Неявный интент
                 vkView();
                 break;
-
             case R.id.github_view:
-                // TODO: 02.07.2016 Набор номера Неявный интент
                 gitHubView();
                 break;
         }
-
     }
 
+    /**
+     * сохранение параметров при переходе между окнами
+     *
+     * @param outState
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (BuildConfig.DEBUG) {
@@ -247,15 +245,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * отрисовка серой плашки внизу экрана с отображением текста поверх
+     *
+     * @param message выводимое сообщение
+     */
     private void showSnackbar(String message) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "showSnackbar");
         }
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
-
-
     }
 
+    /**
+     * настройка кнопки для вызова меню слева
+     */
     private void setupToolbar() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "setupToolbar");
@@ -267,10 +271,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (actionbar != null) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             actionbar.setDisplayHomeAsUpEnabled(true);
-
         }
     }
 
+    /**
+     * настройка кнопкb FAB для редактирования и сохранения параметров клиентских
+     *
+     * @param mode какой из режимов. что нажато?!
+     */
     private void changeEditMode(int mode) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "changeEditMode");
@@ -295,14 +303,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 unlockToolbar();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
                 saveUserInfoValue();
-
-
             }
         }
-
-
     }
 
+    /**
+     * подгрузка клиентских данных из списка массива
+     */
     private void loadUserInfoValue() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "loadUserInfoValue");
@@ -313,6 +320,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * сохраниенеи клиентских параметров в список массива
+     */
     private void saveUserInfoValue() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "saveUserInfoValue");
@@ -339,8 +349,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
 
         });
-
-
     }
 
     /**
@@ -371,6 +379,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * Активация отрисовки меню слева
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (BuildConfig.DEBUG) {
@@ -380,27 +394,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mNavigationDrawer.openDrawer(GravityCompat.START);
             mFlag = true;
         }
-
         circleDraw();
-
-
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * перегрузка метода нажатия кнопки назад. при нажатии в случае открытого меню, меню скрывается.
+     */
     @Override
     public void onBackPressed() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onBackPressed");
         }
+
         if (mFlag == true) {
             mFlag = false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
-
         } else {
             super.onBackPressed();
         }
     }
 
+    /**
+     * округление аватара при помощи внешнего пакета
+     */
     private void circleDraw() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "circleDraw");
@@ -412,6 +429,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
     }
 
+    /**
+     * загрузка фото из галереи
+     */
     private void loadPhotoFromGallery() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "loadPhotoFromGallery");
@@ -424,25 +444,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 ConstantManager.REQUEST_GALLERY_PICTURE);
     }
 
+    /**
+     * получение фото с камеры
+     */
     private void loadPhotoFromCamera() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "loadPhotoFromCamera");
         }
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-
             Intent takeCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             try {
                 mPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
                 showSnackbar("Устройство не готово, повторите попытку");
-
                 Picasso.with(this)
                         .load(mDataManager.getPreferenceManager().loadUserPhoto())
                         .placeholder(R.drawable.user_bg)
                         .into(mProfileImage);
-                // TODO: 02.07.2016 обработать ошибку при чтении/записи файла
             }
             if (mPhotoFile != null) {
                 takeCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -466,6 +486,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * проверка наличия разрешений на работу с камерой для  API 23
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (BuildConfig.DEBUG) {
@@ -473,16 +500,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // TODO: 02.07.2016 Тут обрабатываем разрешение(разрешение получено) например
-                // вывести сообщение или обработать какой-то логикой если нужно
-                // например сообщение - разрешение получено
-
+                showSnackbar("Разрешение на работу с камерой - получено");
             }
         }
         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            // TODO: 02.07.2016 Тут обрабатываем разрешение(разрешение получено) например
-            // вывести сообщение или обработать какой-то логикой если нужно
-            // например сообщение - разрешение получено 01:33:10
+            showSnackbar("Разрешения получены");
         }
     }
 
@@ -500,6 +522,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mProfilePlaceholder.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * блокировка тулбара при редактировании клиентских данных
+     */
     private void lockToolbar() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "lockToolbar");
@@ -509,6 +534,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
+    /**
+     * разблокировка тулбара после редактировании клиентских данных
+     */
     private void unlockToolbar() {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "unlockToolbar");
@@ -517,6 +545,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
+    /**
+     * формирование диалога при клике на minimap делания снимка
+     *
+     * @param id идентификатор нажатой кнопки
+     * @return на выходе само меню из 3х пунктов
+     */
     @Override
     protected Dialog onCreateDialog(int id) {
         if (BuildConfig.DEBUG) {
@@ -532,15 +566,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int choiceItem) {
                         switch (choiceItem) {
                             case 0:
-                                // TODO: 02.07.2016 загрузить из галереии
                                 loadPhotoFromGallery();
                                 break;
                             case 1:
-                                // TODO: 02.07.2016 загрузить из камеры
                                 loadPhotoFromCamera();
                                 break;
                             case 2:
-                                // TODO: 02.07.2016 cancel
                                 dialog.cancel();
                         }
                     }
@@ -566,14 +597,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
-
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.MediaColumns.DATA, image.getAbsolutePath());
 
         this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
         return image;
     }
 
@@ -615,7 +644,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "call");
         }
-
         Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
         startActivity(callIntent);
@@ -629,7 +657,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "sendEmail");
         }
-
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{mDataManager.getPreferenceManager().getUserMail()});
@@ -645,7 +672,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "vkView");
         }
-
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserVK()));
         startActivity(webIntent);
     }
@@ -657,12 +683,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "gitHubView");
         }
-
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserGit()));
         startActivity(webIntent);
     }
-
-
 }
 
 

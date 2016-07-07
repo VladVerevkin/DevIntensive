@@ -49,18 +49,39 @@ public class PreferenceManager {
                 "android.resource://com.softdesign.devintensive.drawable/user_bg"));
     }
 
+    /**
+     * получение номера телефона для интента
+     *
+     * @return
+     */
     public String getUserPhone() {
         return mSharedPreferences.getString(ConstantManager.USER_PHONE_KEY, "");
     }
 
+    /**
+     * получение почты для интента
+     *
+     * @return
+     */
     public String getUserMail() {
         return mSharedPreferences.getString(ConstantManager.USER_MAIL_KEY, "");
     }
+
+    /**
+     * получение ссылки на страницу VK для интента
+     *
+     * @return
+     */
     public String getUserVK() {
         return mSharedPreferences.getString(ConstantManager.USER_VK_KEY, "");
     }
+
+    /**
+     * получение ссылки на страницу gitа для интента
+     *
+     * @return
+     */
     public String getUserGit() {
         return mSharedPreferences.getString(ConstantManager.USER_GIT_KEY, "");
     }
-
 }
