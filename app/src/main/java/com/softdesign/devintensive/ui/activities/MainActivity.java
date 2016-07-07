@@ -28,12 +28,15 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
@@ -49,6 +52,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -106,7 +111,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
 
-
         mUserInfoViews = new ArrayList<>();
         mUserInfoViews.add(mUserPhone);
         mUserInfoViews.add(mUserMail);
@@ -142,7 +146,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
             changeEditMode(mCurrentEditMode);
         }
-    }
+
+
+
+}
 
     @Override
     protected void onStart() {
@@ -252,7 +259,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      *
      * @param message выводимое сообщение
      */
-    private void showSnackbar(String message) {
+    public void showSnackbar(String message) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "showSnackbar");
         }
@@ -709,6 +716,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             showToast("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
+
+
 }
 
 
