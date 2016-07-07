@@ -1,6 +1,7 @@
 package com.softdesign.devintensive.ui.activities;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -98,6 +99,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
         mProfileImage = (ImageView) findViewById(R.id.user_photo_img);
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+
         mUserPhone = (EditText) findViewById(R.id.phone_et);
         mUserMail = (EditText) findViewById(R.id.email_et);
         mUserVK = (EditText) findViewById(R.id.vkcom_et);
@@ -458,7 +460,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
-                showSnackbar("Устройство не готово, повторите попытку");
+                showToast("Устройство не готово, повторите попытку");
                 Picasso.with(this)
                         .load(mDataManager.getPreferenceManager().loadUserPhoto())
                         .placeholder(R.drawable.user_bg)
@@ -500,11 +502,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSnackbar("Разрешение на работу с камерой - получено");
+                showToast("Разрешение на работу с камерой - получено");
             }
         }
         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            showSnackbar("Разрешения получены");
+            showToast("Разрешения получены");
         }
     }
 
@@ -644,9 +646,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "call");
         }
-        Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
-        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-        startActivity(callIntent);
+        try {
+
+            Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+            startActivity(callIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+            showToast("На устройстве отсутствует Приложение для совершения вызовов");
+        }
     }
 
 
@@ -657,12 +665,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "sendEmail");
         }
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{mDataManager.getPreferenceManager().getUserMail()});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DevIntensive automatic send");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! This test message from new APP");
-        startActivity(emailIntent);
+        try {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{mDataManager.getPreferenceManager().getUserMail()});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DevIntensive automatic send");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! This test message from new APP");
+            startActivity(emailIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+            showToast("На устройстве отсутствует Приложение для отправки e-mail");
+        }
     }
 
     /**
@@ -672,8 +685,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "vkView");
         }
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserVK()));
-        startActivity(webIntent);
+        try {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserVK()));
+            startActivity(webIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+            showToast("На устройстве отсутствует Приложение для webсерфинга");
+        }
     }
 
     /**
@@ -683,8 +701,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "gitHubView");
         }
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserGit()));
-        startActivity(webIntent);
+        try {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + mDataManager.getPreferenceManager().getUserGit()));
+            startActivity(webIntent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+            showToast("На устройстве отсутствует Приложение для webсерфинга");
+        }
     }
 }
 
