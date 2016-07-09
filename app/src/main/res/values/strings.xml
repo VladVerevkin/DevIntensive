@@ -1,32 +1,40 @@
 <resources>
+    <string name="ff_medium">sans-serif-medium</string>
+    <string name="ff_regular">sans-serif</string>
+
     <string name="app_name">Веревкин Владислав</string>
-    <string name="rate">0</string>
-    <string name="rate_hint">Рейтинг</string>
-    <string name="code">0</string>
-    <string name="code_hint">Написано строк кода</string>
-    <string name="project">0</string>
-    <string name="project_hint">Проектов</string>
-    <string name="phone">+7(988)248-00-38</string>
-    <string name="phone_hint">Мобильный телефон</string>
-    <string name="vk_hint">Профиль в VK</string>
-    <string name="vk">vk.com/Vlad_Verevkin</string>
-    <string name="mail_hint">E-mail</string>
-    <string name="mail">vlad.verevkin@gmail.com</string>
-    <string name="git">github.com/vlad/DevIntensive</string>
-    <string name="git_hint">Репозиторий</string>
-    <string name="about">много текта много текта много текта ну очень много много текта много текта много текта ну очень многомного текта много текта много текта ну очень много</string>
-    <string name="about_hint"> О себе </string>
+
+    <string name="profile.user_info.rate.dummy">1</string>
+    <string name="profile.user_info.rate.hint">Рейтинг</string>
+    <string name="profile.user_info.code_lines.dummy">33</string>
+    <string name="profile.user_info.code_lines.hint">Написано строк кода</string>
+    <string name="profile.user_info.project.dummy">4</string>
+    <string name="profile.user_info.project.hint">Проектов</string>
+
+    <string name="profile.phone.dummy">+7(988)248-00-38</string>
+    <string name="profile.phone.hint">Мобильный телефон</string>
+    <string name="profile.vk.hint">Профиль в VK</string>
+    <string name="profile.vk.dummy">vk.com/Vlad_Verevkin</string>
+    <string name="profile.mail.hint">E-mail</string>
+    <string name="profile.mail.dummy">vlad.verevkin@gmail.com</string>
+    <string name="profile.git.dummy">github.com/vlad/DevIntensive</string>
+    <string name="profile.git.hint">Репозиторий</string>
+    <string name="profile.bio.dummy">много текта много текта много текта ну очень много много текта много текта много текта ну очень многомного текта много текта много текта ну очень много</string>
+    <string name="profile.bio.hint"> О себе </string>
+
     <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
-    <string name="user_profile_dialog_gallery">загрузить из галереии</string>
-    <string name="user_profile_dialog_camera">сделать снимок</string>
-    <string name="user_profile_dialog_cancel">отмена</string>
-    <string name="user_profile_dialog_title">изменить фотографию профиля</string>
-    <string name="user_profile_chose_message">выберите фото</string>
-    <string name="log_top">ВОЙТИ</string>
-    <string name="password">Пароль</string>
-    <string name="login_enter">Войти</string>
-    <string name="login_repair_password">забыли пароль?</string>
-    <string name="login_enter_str">ВОЙТИ</string>
+    <string name="user_profile.dialog.gallery">загрузить из галереии</string>
+    <string name="user_profile.dialog.camera">сделать снимок</string>
+    <string name="user_profile.dialog.cancel">отмена</string>
+    <string name="user_profile.dialog.title">изменить фотографию профиля</string>
+    <string name="user_profile.chose.message">выберите фото</string>
+
+    <string name="auth.authorization_enter">Войти</string>
+    <string name="auth.email">Ведите e-mail</string>
+    <string name="auth.password">Ведите пароль</string>
+    <string name="auth.login">Войти</string>
+    <string name="auth.remember">забыли пароль?</string>
+
     <string name="menu_profile">Мой профиль</string>
     <string name="menu_comand">Команда</string>
 </resources>

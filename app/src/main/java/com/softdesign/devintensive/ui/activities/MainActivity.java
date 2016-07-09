@@ -467,7 +467,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
-                showToast("Устройство не готово, повторите попытку");
+                showSnackbar("Устройство не готово, повторите попытку");
                 Picasso.with(this)
                         .load(mDataManager.getPreferenceManager().loadUserPhoto())
                         .placeholder(R.drawable.user_bg)
@@ -509,11 +509,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showToast("Разрешение на работу с камерой - получено");
+                showSnackbar("Разрешение на работу с камерой - получено");
             }
         }
         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            showToast("Разрешения получены");
+            showSnackbar("Разрешения получены");
         }
     }
 
@@ -660,7 +660,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(callIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для совершения вызовов");
+            showSnackbar("На устройстве отсутствует Приложение для совершения вызовов");
         }
     }
 
@@ -681,7 +681,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(emailIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для отправки e-mail");
+            showSnackbar("На устройстве отсутствует Приложение для отправки e-mail");
         }
     }
 
@@ -697,7 +697,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(webIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для webсерфинга");
+            showSnackbar("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
 
@@ -713,7 +713,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(webIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для webсерфинга");
+            showSnackbar("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
 

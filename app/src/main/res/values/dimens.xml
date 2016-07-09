@@ -26,6 +26,8 @@
     <dimen name="Layout_height_16">16dp</dimen>
     <dimen name="Line_size_1">1dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
+    <dimen name="auth_card_240">240dp</dimen>
+    <dimen name="minwidth_126">126dp</dimen>
 
     <dimen name="placeholder_photo_size_90">90dp</dimen>
     <dimen name="placeholder_photo_size_48">48dp</dimen>

@@ -28,13 +28,13 @@
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/rate"
+                    android:text="@string/profile.user_info.rate.dummy"
                     android:textSize="@dimen/Font_Size_24" />
 
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/rate_hint"
+                    android:text="@string/profile.user_info.rate.hint"
                     android:textSize="@dimen/Font_Size_16" />
 
             </LinearLayout>
@@ -53,13 +53,13 @@
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/code"
+                    android:text="@string/profile.user_info.code_lines.dummy"
                     android:textSize="@dimen/Font_Size_24" />
 
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/code_hint"
+                    android:text="@string/profile.user_info.code_lines.hint"
                     android:textSize="@dimen/Font_Size_16" />
 
             </LinearLayout>
@@ -79,13 +79,13 @@
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/project"
+                    android:text="@string/profile.user_info.project.dummy"
                     android:textSize="@dimen/Font_Size_24" />
 
                 <TextView
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="@string/project_hint"
+                    android:text="@string/profile.user_info.project.hint"
                     android:textSize="@dimen/Font_Size_16" />
             </LinearLayout>
 
@@ -120,9 +120,9 @@
                         android:id="@+id/phone_et"
                         style="@style/edit_text.black"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/phone_hint"
+                        android:hint="@string/profile.phone.hint"
                         android:inputType="phone"
-                        android:text="@string/phone" />
+                        android:text="@string/profile.phone.dummy" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -167,9 +167,9 @@
                         android:id="@+id/email_et"
                         style="@style/edit_text.black"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/mail_hint"
+                        android:hint="@string/profile.mail.hint"
                         android:inputType="textEmailAddress"
-                        android:text="@string/mail" />
+                        android:text="@string/profile.mail.dummy" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -214,9 +214,9 @@
                         android:id="@+id/vkcom_et"
                         style="@style/edit_text.black"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/vk_hint"
+                        android:hint="@string/profile.vk.hint"
                         android:inputType="text"
-                        android:text="@string/vk" />
+                        android:text="@string/profile.vk.dummy" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -261,9 +261,9 @@
                         android:id="@+id/github_et"
                         style="@style/edit_text.black"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/git_hint"
+                        android:hint="@string/profile.git.hint"
                         android:inputType="text"
-                        android:text="@string/git" />
+                        android:text="@string/profile.git.dummy" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -308,9 +308,9 @@
                         android:id="@+id/about_et"
                         style="@style/edit_text.black"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/about_hint"
+                        android:hint="@string/profile.bio.hint"
                         android:inputType="textMultiLine"
-                        android:text="@string/about" />
+                        android:text="@string/profile.bio.dummy" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
