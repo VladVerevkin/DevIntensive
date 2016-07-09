@@ -89,9 +89,10 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         startActivity(rememberIntent);
     }
 
-    private void loginSuccess(Response<UserModelRes> response) {
-        mDataManager.getPreferenceManager().saveAuthToken(response.body().getData().getToken());
-        mDataManager.getPreferenceManager().saveUserId(response.body().getData().getUser().getId());
+    private void loginSuccess(UserModelRes userModel) {
+        mDataManager.getPreferenceManager().saveAuthToken(userModel.getData().getToken());
+        mDataManager.getPreferenceManager().saveUserId(userModel.getData().getUser().getId());
+        saveUserValues(userModel);
         Intent loginIntent = new Intent(this, MainActivity.class);
         startActivity(loginIntent);
     }
@@ -103,7 +104,7 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
                 @Override
                 public void onResponse(Call<UserModelRes> call, Response<UserModelRes> response) {
                     if (response.code() == 200) {
-                        loginSuccess(response);
+                        loginSuccess(response.body());
                     } else if (response.code() == 404) {
                         showSnackBar("неверный логин или пароль");
                     } else {
@@ -119,5 +120,14 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         } else {
             showSnackBar("Сеть недоступна, попробуйте позже");
         }
+    }
+
+    private void saveUserValues(UserModelRes userModel){
+        int[] userValues = {
+                userModel.getData().getUser().getProfileValues().getRaiting(),
+                userModel.getData().getUser().getProfileValues().getLinesCode(),
+                userModel.getData().getUser().getProfileValues().getProjects()
+        };
+        mDataManager.getPreferenceManager().saveUserProfileValues(userValues);
     }
 }

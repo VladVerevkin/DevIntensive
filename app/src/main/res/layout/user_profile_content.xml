@@ -26,6 +26,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_info_rate_txt"
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
                     android:text="@string/profile.user_info.rate.dummy"
@@ -51,6 +52,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_info_code_lines_txt"
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
                     android:text="@string/profile.user_info.code_lines.dummy"
@@ -77,6 +79,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_info_projects_txt"
                     style="@style/edit_text.white"
                     android:fontFamily="sans-serif-condensed"
                     android:text="@string/profile.user_info.project.dummy"

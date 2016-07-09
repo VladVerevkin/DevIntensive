@@ -28,20 +28,17 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
-import com.softdesign.devintensive.data.managers.PreferenceManager;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
 import com.squareup.picasso.Picasso;
@@ -52,8 +49,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -68,6 +63,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private CollapsingToolbarLayout mCollapsingToolbar;
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private AppBarLayout mAppBarLayout;
+
+    private TextView mUserValueRaiting, mUserValueCodeLines, mUserValueProjects;
+    private List<TextView> mUserValueViews;
 
     private ImageView mCall;
     private ImageView mEmail;
@@ -111,12 +109,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
 
+        mUserValueRaiting = (TextView) findViewById(R.id.user_info_rate_txt);
+        mUserValueCodeLines = (TextView) findViewById(R.id.user_info_code_lines_txt);
+        mUserValueProjects = (TextView) findViewById(R.id.user_info_projects_txt);
+
         mUserInfoViews = new ArrayList<>();
         mUserInfoViews.add(mUserPhone);
         mUserInfoViews.add(mUserMail);
         mUserInfoViews.add(mUserVK);
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUserBio);
+
+        mUserValueViews = new ArrayList<>();
+        mUserValueViews.add(mUserValueRaiting);
+        mUserValueViews.add(mUserValueCodeLines);
+        mUserValueViews.add(mUserValueProjects);
+
         mFab.setOnClickListener(this);
         mProfilePlaceholder.setOnClickListener(this);
 
@@ -124,7 +132,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setupDrawer();
 
 
-        loadUserInfoValue();
+        initUserFields();
+        initUserInfoValue();
+
         mCall = (ImageView) findViewById(R.id.call_img);
         mCall.setOnClickListener(this);
         mEmail = (ImageView) findViewById(R.id.send_img);
@@ -148,8 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
 
-
-}
+    }
 
     @Override
     protected void onStart() {
@@ -174,7 +183,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "onPause");
         }
         super.onPause();
-        saveUserInfoValue();
+        saveUserFields();
     }
 
     @Override
@@ -311,7 +320,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 hideProfilePlaceholder();
                 unlockToolbar();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
-                saveUserInfoValue();
+                saveUserFields();
             }
         }
     }
@@ -319,10 +328,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * подгрузка клиентских данных из списка массива
      */
-    private void loadUserInfoValue() {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "loadUserInfoValue");
-        }
+    private void initUserFields() {
+
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
@@ -332,16 +339,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * сохраниенеи клиентских параметров в список массива
      */
-    private void saveUserInfoValue() {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "saveUserInfoValue");
-        }
+    private void saveUserFields() {
+
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferenceManager().saveUserProfileData(userData);
     }
+
+
+    private void initUserInfoValue() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileValues();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserValueViews.get(i).setText(userData.get(i));
+
+        }
+    }
+
 
     private void setupDrawer() {
         if (BuildConfig.DEBUG) {
