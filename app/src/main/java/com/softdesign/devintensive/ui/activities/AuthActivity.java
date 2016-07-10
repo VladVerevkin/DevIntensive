@@ -130,4 +130,14 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         };
         mDataManager.getPreferenceManager().saveUserProfileValues(userValues);
     }
+
+    private void saveUserFields(UserModelRes userModel){
+      /*  int[] userFilds = {
+                userModel.getData().getUser().getFirstName(),
+                userModel.getData().getUser().getProfileValues().getLinesCode(),
+                userModel.getData().getUser().getProfileValues().getProjects()
+        };
+        mDataManager.getPreferenceManager().saveUserProfileValues(userValues);
+    */
+    }
 }

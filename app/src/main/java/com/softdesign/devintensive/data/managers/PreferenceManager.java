@@ -39,50 +39,9 @@ public class PreferenceManager extends MainActivity {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         for (int i = 0; i < USER_FIELDS.length; i++) {
-            //  editor.putString(USER_FIELDS[i], userFields.get(i));
-            //}
-            //editor.apply();
-
-
-            switch (USER_FIELDS[i]) {
-                case ConstantManager.USER_PHONE_KEY:
-
-                    if (checkPhoneUserInput(userFields.get(i)) == true) {
-                        editor.putString(USER_FIELDS[i], userFields.get(i));
-                    } else {
-                        showSnackbar("Формат номера +x xxx xxx-xx-xx");
-
-                    }
-                    break;
-                case ConstantManager.USER_MAIL_KEY:
-
-                    if (checkMailUserInput(userFields.get(i)) == true) {
-                        editor.putString(USER_FIELDS[i], userFields.get(i));
-                    } else {
-                        showSnackbar("Формат адреса aaa@aaa.aa");
-                    }
-                    break;
-
-                case ConstantManager.USER_VK_KEY:
-
-                    if (checkVKUserInput(userFields.get(i)) == true) {
-                        editor.putString(USER_FIELDS[i], userFields.get(i));
-                    } else {
-                        showSnackbar("Формат номера адреса VK.com/aaaaa");
-                    }
-                    break;
-
-                case ConstantManager.USER_GIT_KEY:
-
-                    if (checkGITUserInput(userFields.get(i)) == true) {
-                        editor.putString(USER_FIELDS[i], userFields.get(i));
-                    } else {
-                        showSnackbar("Формат номера адреса github.com/aaaa");
-                    }
-                    break;
+            editor.putString(USER_FIELDS[i], userFields.get(i));
             }
-        }
-        editor.apply();
+            editor.apply();
     }
 
 
