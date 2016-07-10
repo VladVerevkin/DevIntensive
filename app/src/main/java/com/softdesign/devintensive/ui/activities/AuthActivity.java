@@ -51,8 +51,11 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
         mSignIn = (Button) findViewById(R.id.login_btn);
         mRememberPassword = (TextView) findViewById(R.id.remember_txt);
+
+
         mLogin = (EditText) findViewById(R.id.login_email_et);
         mPassword = (EditText) findViewById(R.id.login_password_et);
+
 
         mRememberPassword.setOnClickListener(this);
         mSignIn.setOnClickListener(this);
@@ -93,6 +96,8 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         mDataManager.getPreferenceManager().saveAuthToken(userModel.getData().getToken());
         mDataManager.getPreferenceManager().saveUserId(userModel.getData().getUser().getId());
         saveUserValues(userModel);
+        saveUserFields(userModel);
+        saveUserNameProfile(userModel);
         Intent loginIntent = new Intent(this, MainActivity.class);
         startActivity(loginIntent);
     }
@@ -122,7 +127,7 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void saveUserValues(UserModelRes userModel){
+    private void saveUserValues(UserModelRes userModel) {
         int[] userValues = {
                 userModel.getData().getUser().getProfileValues().getRaiting(),
                 userModel.getData().getUser().getProfileValues().getLinesCode(),
@@ -131,13 +136,32 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         mDataManager.getPreferenceManager().saveUserProfileValues(userValues);
     }
 
-    private void saveUserFields(UserModelRes userModel){
-      /*  int[] userFilds = {
-                userModel.getData().getUser().getFirstName(),
-                userModel.getData().getUser().getProfileValues().getLinesCode(),
-                userModel.getData().getUser().getProfileValues().getProjects()
+    /**
+     * установка пользовательских полей из локальной версии дата менеджера после инициализации.
+     */
+    private void saveUserFields(UserModelRes userModel) {
+        String[] userFields = {
+                userModel.getData().getUser().getContacts().getPhone(),
+                userModel.getData().getUser().getContacts().getEmail(),
+                userModel.getData().getUser().getContacts().getVk(),
+                userModel.getData().getUser().getRepositories().getRepo().get(0).getGit(),
+                userModel.getData().getUser().getPublicInfo().getBio(),
         };
-        mDataManager.getPreferenceManager().saveUserProfileValues(userValues);
-    */
+
+        mDataManager.getPreferenceManager().saveUserProfileData(userFields);
     }
+
+    /**
+     * установка пользовательских полей из локальной версии дата менеджера после инициализации.
+     */
+    private void saveUserNameProfile(UserModelRes userModel) {
+        String[] userFields = {
+                userModel.getData().getUser().getFirstName(),
+                userModel.getData().getUser().getSecondName(),
+                userModel.getData().getUser().getContacts().getEmail()
+        };
+
+        mDataManager.getPreferenceManager().saveUserName(userFields);
+    }
+
 }

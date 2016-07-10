@@ -22,12 +22,18 @@ public class PreferenceManager extends MainActivity {
             ConstantManager.USER_MAIL_KEY,
             ConstantManager.USER_VK_KEY,
             ConstantManager.USER_GIT_KEY,
-            ConstantManager.USER_BIO_KEY};
+            ConstantManager.USER_BIO_KEY
+    };
+
+    private static final String[] USER_NAME = {
+            ConstantManager.USER_FIRST_NAME,
+            ConstantManager.USER_MAIL_KEY
+    };
 
     private static final String[] USER_VALUES = {
             ConstantManager.USER_RAITING_VALUE,
             ConstantManager.USER_CODE_LINES_VALUE,
-            ConstantManager.USER_PROJECT_VALUE,
+            ConstantManager.USER_PROJECT_VALUE
     };
 
     public PreferenceManager() {
@@ -35,13 +41,30 @@ public class PreferenceManager extends MainActivity {
 
     }
 
-    public void saveUserProfileData(List<String> userFields) {
+    // public void saveUserProfileData(List<String> userFields) {
+    public void saveUserProfileData(String[] userFields) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         for (int i = 0; i < USER_FIELDS.length; i++) {
-            editor.putString(USER_FIELDS[i], userFields.get(i));
-            }
-            editor.apply();
+            editor.putString(USER_FIELDS[i], String.valueOf(userFields[i]));
+        }
+        editor.apply();
+    }
+
+    public void saveUserProfileValues(int[] userValues) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+
+        for (int i = 0; i < USER_VALUES.length; i++) {
+            editor.putString(USER_VALUES[i], String.valueOf(userValues[i]));
+        }
+        editor.apply();
+    }
+
+    public void saveUserName(String[] userFieldsName) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(USER_NAME[0], String.valueOf(userFieldsName[0]+" "+userFieldsName[1]));
+        editor.putString(USER_NAME[1], String.valueOf(userFieldsName[2]));
+        editor.apply();
     }
 
 
@@ -55,10 +78,12 @@ public class PreferenceManager extends MainActivity {
         return userFields;
     }
 
-    public void saveUserPhoto(Uri uri) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(ConstantManager.USER_PHOTO_KEY, uri.toString());
-        editor.apply();
+    public List<String> loadUserNameProfile() {
+        List<String> userFieldName = new ArrayList<>();
+        userFieldName.add(mSharedPreferences.getString(ConstantManager.USER_FIRST_NAME, "null"));
+        userFieldName.add(mSharedPreferences.getString(ConstantManager.USER_SECOND_NAME, "null"));
+        userFieldName.add(mSharedPreferences.getString(ConstantManager.USER_MAIL_KEY, "null"));
+        return userFieldName;
     }
 
     public List<String> loadUserProfileValues() {
@@ -69,18 +94,15 @@ public class PreferenceManager extends MainActivity {
         return userValues;
     }
 
-    public void saveUserProfileValues(int[] userValues) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-
-        for (int i = 0; i < USER_VALUES.length; i++) {
-            editor.putString(USER_VALUES[i], String.valueOf(userValues[i]));
-        }
-        editor.apply();
-    }
-
     public Uri loadUserPhoto() {
         return Uri.parse(mSharedPreferences.getString(ConstantManager.USER_PHOTO_KEY,
                 "android.resource://com.softdesign.devintensive.drawable/user_bg"));
+    }
+
+    public void saveUserPhoto(Uri uri) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(ConstantManager.USER_PHOTO_KEY, uri.toString());
+        editor.apply();
     }
 
     /**
@@ -119,31 +141,6 @@ public class PreferenceManager extends MainActivity {
         return mSharedPreferences.getString(ConstantManager.USER_GIT_KEY, "");
     }
 
-    public static boolean checkPhoneUserInput(String userPhone) {
-        Pattern p = Pattern.compile("^\\+[0-9]{1}\\s[0-9]{3}\\s[0-9]{3}-[0-9]{2}-[0-9]{2}$");
-        Matcher m = p.matcher(userPhone);
-        return m.matches();
-    }
-
-    public static boolean checkMailUserInput(String userMail) {
-        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher m = p.matcher(userMail);
-        return m.matches();
-    }
-
-
-    public static boolean checkVKUserInput(String userVK) {
-
-        return android.util.Patterns.WEB_URL.matcher(userVK).matches();
-    }
-
-    public static boolean checkGITUserInput(String userGIT) {
-        /*Pattern p = Pattern.compile("^[0-9]$");
-        Matcher m = p.matcher(userGIT);
-        return m.matches();*/
-
-        return android.util.Patterns.WEB_URL.matcher(userGIT).matches();
-    }
 
     public void saveAuthToken(String AuthToken) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -164,5 +161,31 @@ public class PreferenceManager extends MainActivity {
     public String getUserId() {
         return mSharedPreferences.getString(ConstantManager.USER_ID_KEY, "null");
     }
+
+    // region========= Валидация строк --
+
+     /*  public static boolean checkPhoneUserInput(String userPhone) {
+        Pattern p = Pattern.compile("^\\+[0-9]{1}\\s[0-9]{3}\\s[0-9]{3}-[0-9]{2}-[0-9]{2}$");
+        Matcher m = p.matcher(userPhone);
+        return m.matches();
+    }
+
+    public static boolean checkMailUserInput(String userMail) {
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher m = p.matcher(userMail);
+        return m.matches();
+    }
+
+
+    public static boolean checkVKUserInput(String userVK) {
+
+        return android.util.Patterns.WEB_URL.matcher(userVK).matches();
+    }
+
+    public static boolean checkGITUserInput(String userGIT) {
+
+        return android.util.Patterns.WEB_URL.matcher(userGIT).matches();
+    }*/
+//endregion
 
 }

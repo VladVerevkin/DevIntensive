@@ -39,6 +39,7 @@ import android.widget.TextView;
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
+import com.softdesign.devintensive.data.network.res.UserModelRes;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
 import com.squareup.picasso.Picasso;
@@ -64,8 +65,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private AppBarLayout mAppBarLayout;
 
-    private TextView mUserValueRaiting, mUserValueCodeLines, mUserValueProjects;
+    private TextView mUserValueRaiting, mUserValueCodeLines, mUserValueProjects, mAppName, mAppEmail;
     private List<TextView> mUserValueViews;
+    private List<TextView> mUserInfoApp;
 
     private ImageView mCall;
     private ImageView mEmail;
@@ -108,6 +110,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserVK = (EditText) findViewById(R.id.vkcom_et);
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
+
+        //NavigationView.getHeaderView(0).findViewById()
 
         mUserValueRaiting = (TextView) findViewById(R.id.user_info_rate_txt);
         mUserValueCodeLines = (TextView) findViewById(R.id.user_info_code_lines_txt);
@@ -183,7 +187,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "onPause");
         }
         super.onPause();
-        saveUserFields();
+        // TODO: 10.07.2016 ДУМАТЬ И ДЕЛАТЬ 
+
+        //  saveUserFields();
     }
 
     @Override
@@ -320,7 +326,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 hideProfilePlaceholder();
                 unlockToolbar();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
-                saveUserFields();
+
+                // TODO: 10.07.2016 ДУМАТЬ И ДЕЛАТЬ!!!! 
+                // saveUserFields(UserModelRes userModel);
             }
         }
     }
@@ -329,38 +337,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * подгрузка клиентских данных из списка массива
      */
     private void initUserFields() {
-
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
         }
     }
 
-    /**
-     * сохраниенеи клиентских параметров в список массива
-     */
-    private void saveUserFields() {
-
-        List<String> userData = new ArrayList<>();
-        for (EditText userFieldView : mUserInfoViews) {
-            userData.add(userFieldView.getText().toString());
-        }
-        mDataManager.getPreferenceManager().saveUserProfileData(userData);
+    private void initUserName() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserNameProfile();
+        mUserInfoApp.get(0).setText(userData.get(0));
+        mUserInfoApp.get(1).setText(userData.get(2));
     }
-
 
     private void initUserInfoValue() {
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileValues();
         for (int i = 0; i < userData.size(); i++) {
             mUserValueViews.get(i).setText(userData.get(i));
-
         }
     }
 
-
+    /**
+     * сохраниенеи клиентских параметров в список массива
+     */
+   /* private void saveUserFields() {
+       
+        List<String> userData = new ArrayList<>();
+        for (EditText userFieldView : mUserInfoViews) {
+            userData.add(userFieldView.getText().toString());
+        }
+        mDataManager.getPreferenceManager().saveUserProfileData(userData);
+    }*/
     private void setupDrawer() {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "setupDrawer");
+            Log.d(TAG, "setupDrawer1");
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -373,6 +382,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
 
         });
+
     }
 
     /**
@@ -417,6 +427,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
             mFlag = true;
+            mAppName = (TextView) findViewById(R.id.user_name_txt);
+            mAppEmail = (TextView) findViewById(R.id.user_email_txt);
+            mUserInfoApp = new ArrayList<>();
+            mUserInfoApp.add(mAppName);
+            mUserInfoApp.add(mAppEmail);
+            initUserName();
+
         }
         circleDraw();
         return super.onOptionsItemSelected(item);
