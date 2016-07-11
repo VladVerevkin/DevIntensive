@@ -84,7 +84,7 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void showSnackBar(String message) {
-        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG);
+        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
 
     private void rememberPassword() {
@@ -126,6 +126,7 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
                 }
             });
         } else {
+
             showSnackBar("Сеть недоступна, попробуйте позже");
         }
     }
