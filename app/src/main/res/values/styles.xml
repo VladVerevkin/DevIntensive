@@ -7,17 +7,15 @@
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
     </style>
-    
+
     <style name="AppTheme.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
     </style>
-    
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"></style>
 
     <style name="icon">
         <item name="android:layout_height">@dimen/Icon_24</item>
@@ -55,22 +53,38 @@
     </style>
 
     <style name="view_t">
-      <item name="android:layout_height">@dimen/Line_size_1</item>
-      <item name="android:background">@color/grey_light</item>
-     </style>
+        <item name="android:layout_height">@dimen/Line_size_1</item>
+        <item name="android:background">@color/grey_light</item>
+    </style>
+
+    <style name="view_login">
+        <item name="android:layout_height">@dimen/Layout_height_16</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="view_login.bot" parent="view_login">
+        <item name="android:layout_height">@dimen/Layout_mar_top_24</item>
+    </style>
+
 
     <style name="view_t.ver" parent="view_t">
-      <item name="android:layout_height">@dimen/Line_size_1</item>
-      <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/Line_size_1</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
+
 
     <style name="view_t.hor" parent="view_t">
         <item name="android:layout_width">@dimen/Line_size_1</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-    
+
     <style name="custom_dialog">
         <item name="android:fullDark">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.Button.Red" parent="Base.Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/color_accent</item>
+        <item name="android:textColor">@color/white</item>
+        </style>
 </resources>
