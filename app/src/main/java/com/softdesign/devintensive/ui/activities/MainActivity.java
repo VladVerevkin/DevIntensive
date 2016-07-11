@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -39,10 +41,11 @@ import android.widget.TextView;
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
-import com.softdesign.devintensive.data.network.res.UserModelRes;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
+import com.softdesign.devintensive.utils.ToCircleAvatar;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,6 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mEmail;
     private ImageView mVK;
     private ImageView mGitHub;
+    private ImageView mUserAvatarImg;
 
     private FloatingActionButton mFab;
     private EditText mUserPhone, mUserMail, mUserVK, mUserGit, mUserBio;
@@ -139,6 +143,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initUserFields();
         initUserInfoValue();
 
+        // mUserPhotoImg = (ImageView)findViewById(R.id.user_photo_img);
+
         mCall = (ImageView) findViewById(R.id.call_img);
         mCall.setOnClickListener(this);
         mEmail = (ImageView) findViewById(R.id.send_img);
@@ -148,10 +154,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mGitHub = (ImageView) findViewById(R.id.github_view);
         mGitHub.setOnClickListener(this);
 
+
         Picasso.with(this)
-                .load(mDataManager.getPreferenceManager().loadUserPhoto())
-                .placeholder(R.drawable.user_bg)// TODO: 02.07.2016 01:38:04
-                // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
+                .load(mDataManager.getPreferenceManager().loadUserPhotoImg())
+                .placeholder(R.drawable.user_bg)
+                .resize(768, 512)
+                .centerCrop()
                 .into(mProfileImage);
 
         if (savedInstanceState == null) {
@@ -466,8 +474,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         BitmapDrawable bImage = (BitmapDrawable) getResources().getDrawable(R.drawable.ava);
         RoundedAvatarDrawable RondedAvatarImg = new RoundedAvatarDrawable(bImage.getBitmap());
         Bitmap bImageRwonded = RondedAvatarImg.getBitmap();
-        ImageView mImg = (ImageView) findViewById(R.id.avatar);
-        mImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
+        mUserAvatarImg = (ImageView) findViewById(R.id.user_avatar_img);
+        mUserAvatarImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
+
+        Picasso.with(this)
+                .load(mDataManager.getPreferenceManager().loadUserAvatar())
+                .placeholder(R.drawable.ava)
+                .transform(new ToCircleAvatar())
+                .into(mUserAvatarImg);
+
     }
 
     /**

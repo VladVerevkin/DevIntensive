@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/Font_Size_24">
 
     <ImageView
-        android:id="@+id/avatar"
+        android:id="@+id/user_avatar_img"
         android:layout_width="@dimen/menu_60"
         android:layout_height="@dimen/menu_60"
         android:layout_marginTop="@dimen/Layout_mar_left_16"

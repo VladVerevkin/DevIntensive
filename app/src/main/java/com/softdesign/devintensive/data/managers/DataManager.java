@@ -19,7 +19,7 @@ public class DataManager {
 
     public DataManager() {
         this.mPreferenceManager = new PreferenceManager();
-       // this.mContext= DevIntensiveApplication.getContext();
+        this.mContext= DevIntensiveApplication.getContext();
         this.mRestService= ServiceGenerator.createService(RestService.class);
     }
 

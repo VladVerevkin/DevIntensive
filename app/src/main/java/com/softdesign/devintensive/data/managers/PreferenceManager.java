@@ -1,6 +1,7 @@
 package com.softdesign.devintensive.data.managers;
 
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Patterns;
@@ -102,6 +103,27 @@ public class PreferenceManager extends MainActivity {
     public void saveUserPhoto(Uri uri) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(ConstantManager.USER_PHOTO_KEY, uri.toString());
+        editor.apply();
+    }
+
+    public String loadUserAvatar() {
+        return mSharedPreferences.getString(ConstantManager.USER_AVATAR_KEY,
+                         "android.resource://com.softdesign.devintensive.drawable/ava");
+    }
+
+    public void saveUserAvatar(String str) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(ConstantManager.USER_AVATAR_KEY, str);
+        editor.apply();
+    }
+    public Uri loadUserPhotoImg() {
+        return Uri.parse(mSharedPreferences.getString(ConstantManager.USER_PHOTO_IMG_KEY,
+                "android.resource://com.softdesign.devintensive.drawable/user_bg"));
+    }
+
+    public void saveUserPhotoImg(String str) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(ConstantManager.USER_PHOTO_IMG_KEY, str);
         editor.apply();
     }
 

@@ -28,15 +28,18 @@ import android.graphics.Bitmap;
         import android.graphics.Shader;
         import android.graphics.drawable.Drawable;
 
+import com.squareup.picasso.Transformation;
+
 /**
  * A Drawable that draws an oval with given {@link Bitmap}
  */
-public class RoundedAvatarDrawable extends Drawable {
+public class RoundedAvatarDrawable extends Drawable implements Transformation{
     private final Bitmap mBitmap;
     private final Paint mPaint;
     private final RectF mRectF;
     private final int mBitmapWidth;
     private final int mBitmapHeight;
+
 
     public RoundedAvatarDrawable(Bitmap bitmap) {
         mBitmap = bitmap;
@@ -51,6 +54,8 @@ public class RoundedAvatarDrawable extends Drawable {
         mBitmapWidth = mBitmap.getWidth();
         mBitmapHeight = mBitmap.getHeight();
     }
+
+
 
     @Override
     public void draw(Canvas canvas) {
@@ -111,6 +116,16 @@ public class RoundedAvatarDrawable extends Drawable {
 
     public Bitmap getBitmap() {
         return mBitmap;
+    }
+
+    @Override
+    public Bitmap transform(Bitmap source) {
+        return null;
+    }
+
+    @Override
+    public String key() {
+        return null;
     }
 
     // TODO allow set and use target density, mutate, constant state, changing configurations, etc.
