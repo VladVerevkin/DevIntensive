@@ -167,13 +167,14 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
 
         mDataManager.getPreferenceManager().saveUserName(userFields);
     }
-     private void saveUserAvatar(UserModelRes userModel) {
-         String str=userModel.getData().getUser().getPublicInfo().getAvatar();
-         mDataManager.getPreferenceManager().saveUserAvatar(str);
+
+    private void saveUserAvatar(UserModelRes userModel) {
+        String str = userModel.getData().getUser().getPublicInfo().getAvatar();
+        mDataManager.getPreferenceManager().saveUserAvatar(str);
     }
 
     private void saveUserPhotoImg(UserModelRes userModel) {
-        String str=userModel.getData().getUser().getPublicInfo().getPhoto();
-      mDataManager.getPreferenceManager().saveUserPhotoImg(str);
+        String str = userModel.getData().getUser().getPublicInfo().getPhoto();
+        mDataManager.getPreferenceManager().saveUserPhotoImg(str);
     }
 }

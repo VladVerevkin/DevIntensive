@@ -63,7 +63,7 @@ public class PreferenceManager extends MainActivity {
 
     public void saveUserName(String[] userFieldsName) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(USER_NAME[0], String.valueOf(userFieldsName[0]+" "+userFieldsName[1]));
+        editor.putString(USER_NAME[0], String.valueOf(userFieldsName[0] + " " + userFieldsName[1]));
         editor.putString(USER_NAME[1], String.valueOf(userFieldsName[2]));
         editor.apply();
     }
@@ -108,7 +108,7 @@ public class PreferenceManager extends MainActivity {
 
     public String loadUserAvatar() {
         return mSharedPreferences.getString(ConstantManager.USER_AVATAR_KEY,
-                         "android.resource://com.softdesign.devintensive.drawable/ava");
+                "android.resource://com.softdesign.devintensive.drawable/ava");
     }
 
     public void saveUserAvatar(String str) {
@@ -116,6 +116,7 @@ public class PreferenceManager extends MainActivity {
         editor.putString(ConstantManager.USER_AVATAR_KEY, str);
         editor.apply();
     }
+
     public Uri loadUserPhotoImg() {
         return Uri.parse(mSharedPreferences.getString(ConstantManager.USER_PHOTO_IMG_KEY,
                 "android.resource://com.softdesign.devintensive.drawable/user_bg"));
