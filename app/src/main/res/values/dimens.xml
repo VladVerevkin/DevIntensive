@@ -33,6 +33,8 @@
     <dimen name="placeholder_photo_size_48">48dp</dimen>
     <dimen name="nav_bar_head_172">172dp</dimen>
     <dimen name="user_prof_nav_104">104dp</dimen>
+    <dimen name="user_prof_nav_112">112dp</dimen>
+    <dimen name="user_prof_nav_56">56dp</dimen>
     <dimen name="login_corner_2">2dp</dimen>
     <dimen name="red_view_line_4">4dp</dimen>
 

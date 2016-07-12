@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         mDataManager = DataManager.getInstance();
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
@@ -114,8 +115,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserVK = (EditText) findViewById(R.id.vkcom_et);
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
-
-        //NavigationView.getHeaderView(0).findViewById()
 
         mUserValueRaiting = (TextView) findViewById(R.id.user_info_rate_txt);
         mUserValueCodeLines = (TextView) findViewById(R.id.user_info_code_lines_txt);
@@ -139,11 +138,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setupToolbar();
         setupDrawer();
 
-
         initUserFields();
         initUserInfoValue();
-
-        // mUserPhotoImg = (ImageView)findViewById(R.id.user_photo_img);
 
         mCall = (ImageView) findViewById(R.id.call_img);
         mCall.setOnClickListener(this);
@@ -153,7 +149,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mVK.setOnClickListener(this);
         mGitHub = (ImageView) findViewById(R.id.github_view);
         mGitHub.setOnClickListener(this);
-
 
         Picasso.with(this)
                 .load(mDataManager.getPreferenceManager().loadUserPhotoImg())
@@ -168,8 +163,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
             changeEditMode(mCurrentEditMode);
         }
-
-
     }
 
     @Override
@@ -178,7 +171,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onStart");
         }
-
     }
 
     @Override
@@ -196,7 +188,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         super.onPause();
         // TODO: 10.07.2016 ДУМАТЬ И ДЕЛАТЬ 
-
         //  saveUserFields();
     }
 
@@ -274,7 +265,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         super.onSaveInstanceState(outState);
         outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode);
-
     }
 
     /**
@@ -390,7 +380,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
 
         });
-
     }
 
     /**
@@ -441,7 +430,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mUserInfoApp.add(mAppName);
             mUserInfoApp.add(mAppEmail);
             initUserName();
-
         }
         circleDraw();
         return super.onOptionsItemSelected(item);
@@ -455,7 +443,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onBackPressed");
         }
-
         if (mFlag == true) {
             mFlag = false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
@@ -482,7 +469,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 .placeholder(R.drawable.ava)
                 .transform(new ToCircleAvatar())
                 .into(mUserAvatarImg);
-
     }
 
     /**
@@ -673,9 +659,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         Picasso.with(this)
                 .load(selectedImage)
+                .centerCrop()
                 .into(mProfileImage);
-        // сделать ПЛЭЙСХОЛДЕР ТРАНСПАРЕНТ+CROP
-        // TODO: 02.07.2016 01:38:04
+        // TODO: 02.07.2016 01:38:04 4е видео
         mDataManager.getPreferenceManager().saveUserPhoto(selectedImage);
     }
 
@@ -701,7 +687,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "call");
         }
         try {
-
             Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
             startActivity(callIntent);
@@ -710,7 +695,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             showSnackbar("На устройстве отсутствует Приложение для совершения вызовов");
         }
     }
-
 
     /**
      * Вызов интента для формированияписьма на отправку
@@ -763,8 +747,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             showSnackbar("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
-
-
 }
 
 

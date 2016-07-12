@@ -11,12 +11,13 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/user_unfo_wraper"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/user_prof_nav_104"
-            android:layout_weight="1"
+            android:layout_height="@dimen/user_prof_nav_112"
             android:background="@color/grey"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
 
             <!--reit-->
             <LinearLayout

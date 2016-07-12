@@ -52,10 +52,8 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         mSignIn = (Button) findViewById(R.id.login_btn);
         mRememberPassword = (TextView) findViewById(R.id.remember_txt);
 
-
         mLogin = (EditText) findViewById(R.id.login_email_et);
         mPassword = (EditText) findViewById(R.id.login_password_et);
-
 
         mRememberPassword.setOnClickListener(this);
         mSignIn.setOnClickListener(this);
@@ -151,7 +149,6 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
                 userModel.getData().getUser().getRepositories().getRepo().get(0).getGit(),
                 userModel.getData().getUser().getPublicInfo().getBio(),
         };
-
         mDataManager.getPreferenceManager().saveUserProfileData(userFields);
     }
 
@@ -164,7 +161,6 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
                 userModel.getData().getUser().getSecondName(),
                 userModel.getData().getUser().getContacts().getEmail()
         };
-
         mDataManager.getPreferenceManager().saveUserName(userFields);
     }
 
