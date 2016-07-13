@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -28,23 +30,22 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.softdesign.devintensive.BuildConfig;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
-import com.softdesign.devintensive.data.managers.PreferenceManager;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.RoundedAvatarDrawable;
+import com.softdesign.devintensive.utils.ToCircleAvatar;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,8 +53,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -69,10 +68,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private AppBarLayout mAppBarLayout;
 
+    private TextView mUserValueRaiting, mUserValueCodeLines, mUserValueProjects, mAppName, mAppEmail;
+    private List<TextView> mUserValueViews;
+    private List<TextView> mUserInfoApp;
+
     private ImageView mCall;
     private ImageView mEmail;
     private ImageView mVK;
     private ImageView mGitHub;
+    private ImageView mUserAvatarImg;
 
     private FloatingActionButton mFab;
     private EditText mUserPhone, mUserMail, mUserVK, mUserGit, mUserBio;
@@ -97,6 +101,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         mDataManager = DataManager.getInstance();
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_container);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
@@ -111,20 +116,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserGit = (EditText) findViewById(R.id.github_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
 
+        mUserValueRaiting = (TextView) findViewById(R.id.user_info_rate_txt);
+        mUserValueCodeLines = (TextView) findViewById(R.id.user_info_code_lines_txt);
+        mUserValueProjects = (TextView) findViewById(R.id.user_info_projects_txt);
+
         mUserInfoViews = new ArrayList<>();
         mUserInfoViews.add(mUserPhone);
         mUserInfoViews.add(mUserMail);
         mUserInfoViews.add(mUserVK);
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUserBio);
+
+        mUserValueViews = new ArrayList<>();
+        mUserValueViews.add(mUserValueRaiting);
+        mUserValueViews.add(mUserValueCodeLines);
+        mUserValueViews.add(mUserValueProjects);
+
         mFab.setOnClickListener(this);
         mProfilePlaceholder.setOnClickListener(this);
 
         setupToolbar();
         setupDrawer();
 
+        initUserFields();
+        initUserInfoValue();
 
-        loadUserInfoValue();
         mCall = (ImageView) findViewById(R.id.call_img);
         mCall.setOnClickListener(this);
         mEmail = (ImageView) findViewById(R.id.send_img);
@@ -135,9 +151,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mGitHub.setOnClickListener(this);
 
         Picasso.with(this)
-                .load(mDataManager.getPreferenceManager().loadUserPhoto())
-                .placeholder(R.drawable.user_bg)// TODO: 02.07.2016 01:38:04
-                // сделать ПЛЭЙСХОЛДЕТ ТРАНСПАРЕНТ+CROP
+                .load(mDataManager.getPreferenceManager().loadUserPhotoImg())
+                .placeholder(R.drawable.user_bg)
+                .resize(768, 512)
+                .centerCrop()
                 .into(mProfileImage);
 
         if (savedInstanceState == null) {
@@ -146,10 +163,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
             changeEditMode(mCurrentEditMode);
         }
-
-
-
-}
+    }
 
     @Override
     protected void onStart() {
@@ -157,7 +171,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onStart");
         }
-
     }
 
     @Override
@@ -174,7 +187,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "onPause");
         }
         super.onPause();
-        saveUserInfoValue();
+        // TODO: 10.07.2016 ДУМАТЬ И ДЕЛАТЬ 
+        //  saveUserFields();
     }
 
     @Override
@@ -251,7 +265,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         super.onSaveInstanceState(outState);
         outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentEditMode);
-
     }
 
     /**
@@ -311,7 +324,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 hideProfilePlaceholder();
                 unlockToolbar();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
-                saveUserInfoValue();
+
+                // TODO: 10.07.2016 ДУМАТЬ И ДЕЛАТЬ!!!! 
+                // saveUserFields(UserModelRes userModel);
             }
         }
     }
@@ -319,33 +334,40 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * подгрузка клиентских данных из списка массива
      */
-    private void loadUserInfoValue() {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "loadUserInfoValue");
-        }
+    private void initUserFields() {
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
         }
     }
 
+    private void initUserName() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserNameProfile();
+        mUserInfoApp.get(0).setText(userData.get(0));
+        mUserInfoApp.get(1).setText(userData.get(2));
+    }
+
+    private void initUserInfoValue() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileValues();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserValueViews.get(i).setText(userData.get(i));
+        }
+    }
+
     /**
      * сохраниенеи клиентских параметров в список массива
      */
-    private void saveUserInfoValue() {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "saveUserInfoValue");
-        }
+   /* private void saveUserFields() {
+       
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferenceManager().saveUserProfileData(userData);
-    }
-
+    }*/
     private void setupDrawer() {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "setupDrawer");
+            Log.d(TAG, "setupDrawer1");
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -402,6 +424,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (item.getItemId() == android.R.id.home) {
             mNavigationDrawer.openDrawer(GravityCompat.START);
             mFlag = true;
+            mAppName = (TextView) findViewById(R.id.user_name_txt);
+            mAppEmail = (TextView) findViewById(R.id.user_email_txt);
+            mUserInfoApp = new ArrayList<>();
+            mUserInfoApp.add(mAppName);
+            mUserInfoApp.add(mAppEmail);
+            initUserName();
         }
         circleDraw();
         return super.onOptionsItemSelected(item);
@@ -415,7 +443,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onBackPressed");
         }
-
         if (mFlag == true) {
             mFlag = false;
             mNavigationDrawer.closeDrawer(GravityCompat.START);
@@ -434,8 +461,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         BitmapDrawable bImage = (BitmapDrawable) getResources().getDrawable(R.drawable.ava);
         RoundedAvatarDrawable RondedAvatarImg = new RoundedAvatarDrawable(bImage.getBitmap());
         Bitmap bImageRwonded = RondedAvatarImg.getBitmap();
-        ImageView mImg = (ImageView) findViewById(R.id.avatar);
-        mImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
+        mUserAvatarImg = (ImageView) findViewById(R.id.user_avatar_img);
+        mUserAvatarImg.setImageDrawable(new RoundedAvatarDrawable(bImage.getBitmap()));
+
+        Picasso.with(this)
+                .load(mDataManager.getPreferenceManager().loadUserAvatar())
+                .placeholder(R.drawable.ava)
+                .transform(new ToCircleAvatar())
+                .into(mUserAvatarImg);
     }
 
     /**
@@ -467,7 +500,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
-                showToast("Устройство не готово, повторите попытку");
+                showSnackbar("Устройство не готово, повторите попытку");
                 Picasso.with(this)
                         .load(mDataManager.getPreferenceManager().loadUserPhoto())
                         .placeholder(R.drawable.user_bg)
@@ -509,11 +542,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showToast("Разрешение на работу с камерой - получено");
+                showSnackbar("Разрешение на работу с камерой - получено");
             }
         }
         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            showToast("Разрешения получены");
+            showSnackbar("Разрешения получены");
         }
     }
 
@@ -626,9 +659,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         Picasso.with(this)
                 .load(selectedImage)
+                .centerCrop()
                 .into(mProfileImage);
-        // сделать ПЛЭЙСХОЛДЕР ТРАНСПАРЕНТ+CROP
-        // TODO: 02.07.2016 01:38:04
+        // TODO: 02.07.2016 01:38:04 4е видео
         mDataManager.getPreferenceManager().saveUserPhoto(selectedImage);
     }
 
@@ -654,16 +687,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Log.d(TAG, "call");
         }
         try {
-
             Uri number = Uri.parse("tel:" + mDataManager.getPreferenceManager().getUserPhone());
             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
             startActivity(callIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для совершения вызовов");
+            showSnackbar("На устройстве отсутствует Приложение для совершения вызовов");
         }
     }
-
 
     /**
      * Вызов интента для формированияписьма на отправку
@@ -681,7 +712,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(emailIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для отправки e-mail");
+            showSnackbar("На устройстве отсутствует Приложение для отправки e-mail");
         }
     }
 
@@ -697,7 +728,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(webIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для webсерфинга");
+            showSnackbar("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
 
@@ -713,11 +744,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(webIntent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            showToast("На устройстве отсутствует Приложение для webсерфинга");
+            showSnackbar("На устройстве отсутствует Приложение для webсерфинга");
         }
     }
-
-
 }
 
 
