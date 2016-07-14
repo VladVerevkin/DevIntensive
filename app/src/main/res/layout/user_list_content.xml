@@ -5,4 +5,4 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/user_prof_nav_56"
     android:paddingLeft="@dimen/Baseline_grid_8"
-    android:paddingRight="@dimen/Baseline_grid_8"/>
+    android:paddingRight="@dimen/Baseline_grid_8" />

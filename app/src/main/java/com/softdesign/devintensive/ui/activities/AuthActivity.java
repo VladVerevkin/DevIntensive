@@ -99,7 +99,7 @@ public class AuthActivity extends BaseActivity implements View.OnClickListener {
         saveUserPhotoImg(userModel);
         saveUserAvatar(userModel);
 
-        Intent loginIntent = new Intent(this, MainActivity.class);
+        Intent loginIntent = new Intent(this, UserListActivity.class);//MainActivity.class);
         startActivity(loginIntent);
     }
 

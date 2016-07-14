@@ -20,8 +20,8 @@ public class DataManager {
 
     public DataManager() {
         this.mPreferenceManager = new PreferenceManager();
-        this.mContext = DevIntensiveApplication.getContext();
-        this.mRestService = ServiceGenerator.createService(RestService.class);
+        this.mContext= DevIntensiveApplication.getContext();
+        this.mRestService= ServiceGenerator.createService(RestService.class);
     }
 
     public static DataManager getInstance() {
@@ -35,16 +35,15 @@ public class DataManager {
         return mPreferenceManager;
     }
 
-    public Context getContext() {
+    public Context getContext(){
         return mContext;
     }
 
     // region ========== Network ===========
-    public Call<UserModelRes> loginUser(UserLoginReq userLoginReq) {
-        return mRestService.loginUser(userLoginReq);
-    }
-
-    public Call<UserListRes> getUserList() {
+public Call<UserModelRes> loginUser(UserLoginReq userLoginReq){
+    return mRestService.loginUser(userLoginReq);
+}
+public Call<UserListRes> getUserList(){
         return mRestService.getUserList();
     }
 

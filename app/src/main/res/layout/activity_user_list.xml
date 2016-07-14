@@ -5,8 +5,8 @@
     android:id="@+id/navigation_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.UserListActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_coordinator_container"
@@ -27,12 +27,12 @@
                 android:layout_height="?attr/actionBarSize"
                 android:titleTextColor="@color/white"
                 app:layout_collapseMode="pin"
-                app:theme="@style/ToolbarStyle"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:theme="@style/ToolbarStyle" />
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/user_list_content"/>
+        <include layout="@layout/user_list_content" />
 
     </android.support.design.widget.CoordinatorLayout>
 
