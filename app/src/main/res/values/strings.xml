@@ -37,4 +37,8 @@
 
     <string name="menu_profile">Мой профиль</string>
     <string name="menu_comand">Команда</string>
+
+    <string name="view_btn">Просмотр</string>
+
+    <string name="user_full_name">Фамилия Имя</string>
 </resources>

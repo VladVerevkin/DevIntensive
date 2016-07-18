@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/Baseline_grid_8"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/login_corner_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.softdesign.devintensive.ui.views.AspectRatioImageView
+                android:id="@+id/user_photo_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_bg"
+                app:aspect_ratio="1.78" />
+
+            <TextView
+                android:id="@+id/user_full_name_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="@string/ff_medium"
+                android:paddingBottom="@dimen/Layout_mar_left_24"
+                android:paddingLeft="@dimen/Layout_mar_top_16"
+                android:paddingRight="@dimen/Layout_mar_top_16"
+                android:text="@string/user_full_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/Font_Size_24" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Layout_mar_left_72"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/Baseline_grid_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rating_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="@string/profile.user_info.rate.dummy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile.user_info.rate.hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/Baseline_grid_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/code_lines_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="@string/profile.user_info.code_lines.dummy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile.user_info.code_lines.hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/Baseline_grid_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/projects_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_medium"
+                    android:text="@string/profile.user_info.project.dummy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/ff_regular"
+                    android:text="@string/profile.user_info.project.hint"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Font_Size_14" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bio_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@string/ff_regular"
+            android:maxLines="3"
+            android:paddingLeft="@dimen/Layout_height_16"
+            android:paddingRight="@dimen/Layout_height_16"
+            android:text="@string/profile.bio.dummy"
+            android:textColor="@color/grey_light"
+            android:textSize="@dimen/Font_Size_14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Line_size_1"
+            android:layout_marginBottom="@dimen/Layout_mar_left_8"
+            android:layout_marginTop="@dimen/Layout_mar_left_16"
+            android:background="@color/grey_light" />
+
+        <Button
+            android:id="@+id/more_info_btn"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/Layout_mar_right_16"
+            android:paddingRight="@dimen/Layout_mar_right_16"
+            android:text="@string/view_btn"
+            android:textColor="@color/color_accent" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

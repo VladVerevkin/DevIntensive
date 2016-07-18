@@ -16,8 +16,7 @@
             android:layout_height="@dimen/user_prof_nav_112"
             android:background="@color/grey"
             android:gravity="center"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <!--reit-->
             <LinearLayout
